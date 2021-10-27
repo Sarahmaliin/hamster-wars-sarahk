@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
         <header>
-          <h2>Meny</h2>
-          <nav>
+          <h2>Hamster Wars</h2>
+          <nav className="menuSection">
             <Link to='/'>Startsida</Link>
             <Link to='/Tävla'>Tävla</Link>
             <Link to='/Galleri'>Galleri</Link>

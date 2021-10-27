@@ -1,3 +1,12 @@
+h1, h2, a{
+  font-family: 'Playfair Display', serif;
+  color: black;
+}
+
+p, button, h3{
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+}
 
 .App{
   display: flex;
@@ -6,12 +15,52 @@
   align-items: center;
 }
 
+header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 90vw;
+  padding: 3em;
+}
+
+.menuSection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+h2{
+  font-size: 2em;
+  margin: unset;
+}
+
+a{
+  text-decoration: none;
+  font-size: 1.25em; 
+  margin: 0 1em;
+}
+
+a:active{
+  color: rgb(65, 65, 65);
+}
+
 main{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-width: 90vw;
+}
+
+.addHamster{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 85vw;
+  padding: 1em;
 }
 
 .grid{
