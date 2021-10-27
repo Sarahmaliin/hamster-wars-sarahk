@@ -1,18 +1,8 @@
 import { useEffect, useState } from 'react'
+import { HamsterInfo } from '../models/HamsterInfo'
+
 const Galleri = () =>{
 
-
-    interface HamsterInfo{
-        name: string,
-        age: number,
-        defeats: number,
-        favFood: string,
-        games: number,
-        id: any,
-        imgName: string,
-        loves: string,
-        wins: number
-    }
 
     const [ hamsterData, setHamsterData ] = useState<HamsterInfo[] | null>(null)
 
