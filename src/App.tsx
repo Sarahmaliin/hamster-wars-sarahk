@@ -1,10 +1,29 @@
-import React from 'react';
+import { Link, Switch, Route } from 'react-router-dom'
 import './App.css';
+import BadUrl from './components/BadUrl';
+import Galleri from './components/Galleri';
+import Startsida from './components/Startsida';
+import Tävla from './components/Tävla';
 
 function App() {
   return (
     <div className="App">
-        <h1>Hamster wars</h1>
+        <header>
+          <h2>Meny</h2>
+          <nav>
+            <Link to='/'>Startsida</Link>
+            <Link to='/Tävla'>Tävla</Link>
+            <Link to='/Galleri'>Galleri</Link>
+          </nav>
+        </header>
+        <main>
+          <Switch>
+            <Route exact path='/'> < Startsida /> </Route>
+            <Route path='/Tävla'> < Tävla /> </Route>
+            <Route path='/Galleri'> < Galleri /> </Route>
+            <Route path='/'> <BadUrl /></Route>
+          </Switch>
+        </main>
     </div>
   );
 }
