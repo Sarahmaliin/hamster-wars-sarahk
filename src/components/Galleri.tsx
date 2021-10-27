@@ -14,15 +14,19 @@ const Galleri = () =>{
         <>
         <h1>Galleri sida</h1>
         <section className="grid">
-         {hamsterData ? hamsterData.map((hamster, index) =>(
-             <section className="infoCard" key={index}>
-                 <img src='' alt="hamster profile" />
+        {hamsterData ? hamsterData.map((hamster, index) =>(   
+        <section className="infoCard" key={index}>
+            <figure>
+                <img className="infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
+            </figure>
+            <section className="container">
                 <h2 >{hamster.name}</h2>
-                <section className="buttons">
-                    <button>ta bort</button>
-                    <button>läs mer</button>
-                </section>
-             </section>
+                    <section className="buttons">
+                        <button>ta bort</button>
+                        <button>läs mer</button>
+                    </section>
+            </section>      
+        </section>
         ))
         :
         'Loading data'
