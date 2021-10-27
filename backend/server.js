@@ -14,7 +14,6 @@ app.use((req, res, next) => {
 })
 
 app.use(express.static(__dirname + '/public'))
-
 //routes/endpoints
 
 app.use('/hamsters', hamsterRouter)
