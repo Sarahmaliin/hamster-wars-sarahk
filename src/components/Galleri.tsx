@@ -3,10 +3,6 @@ const Galleri = () =>{
 
 
     interface HamsterInfo{
-        Hamster: object[];
-    }
-
-    interface Hamster{
         name: string,
         age: number,
         defeats: number,
@@ -27,7 +23,7 @@ const Galleri = () =>{
     return(
         <section>
         <h1>Galleri sida</h1>
-         {hamsterData ? hamsterData.map((hamster: any, index) =>(
+         {hamsterData ? hamsterData.map((hamster, index) =>(
             <li key={index}>{hamster.name}</li>
         ))
         :
