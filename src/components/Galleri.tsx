@@ -12,7 +12,9 @@ const Galleri = () =>{
 
     return(
         <>
-        <h1>Galleri sida</h1>
+        <article className="addHamster">
+            <h2>+</h2>
+        </article>
         <section className="grid">
         {hamsterData ? hamsterData.map((hamster, index) =>(   
         <section className="infoCard" key={index}>
@@ -20,7 +22,7 @@ const Galleri = () =>{
                 <img className="infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
             </figure>
             <section className="container">
-                <h2 >{hamster.name}</h2>
+                <p >{hamster.name}</p>
                     <section className="buttons">
                         <button>ta bort</button>
                         <button>läs mer</button>
