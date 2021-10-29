@@ -102,3 +102,9 @@ main{
 .buttons > button{
   padding: .25em;
 }
+
+.trashcan{
+  background: no-repeat url(../src/icons/trashcan1.svg);
+  width: 2em;
+  height: 3em;
+}

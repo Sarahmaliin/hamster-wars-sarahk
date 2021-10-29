@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { HamsterInfo } from '../models/HamsterInfo'
+import { HamsterInfo } from '../../models/HamsterInfo'
 import FormHamster from './FormHamster'
 
 const Galleri = () =>{
@@ -11,30 +11,34 @@ const Galleri = () =>{
         sendRequest(setHamsterData)
     }, [])
 
+    const readMore = (index: number) =>{
+        console.log('click',)
+    }
+
     return(
         <>
         
         < FormHamster />
 
-        <section className="grid">
+        <ul className="grid">
         {hamsterData ? hamsterData.map((hamster, index) =>(   
-        <section className="infoCard" key={index}>
+        <li className="infoCard" key={index}>
             <figure>
                 <img className="infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
             </figure>
             <section className="container">
                 <p >{hamster.name}</p>
                     <section className="buttons">
-                        <button>ta bort</button>
-                        <button>läs mer</button>
+                        <button className='trashcan'></button>
+                        <button onClick={() => readMore(index)}>läs mer</button>
                     </section>
             </section>      
-        </section>
+        </li>
         ))
         :
         'Loading data'
         } 
-    </section>
+    </ul>
     </>
     )
 }
