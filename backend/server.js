@@ -18,6 +18,10 @@ app.use(express.static(__dirname + '/public'))
 
 app.use('/hamsters', hamsterRouter)
 
+app.get('*', (req, res) => {
+	res.sendFile(__dirname + '/build/index.html')
+})
+
 app.listen(PORT, () =>{
     console.log(`listening on port ${PORT}`)
 })

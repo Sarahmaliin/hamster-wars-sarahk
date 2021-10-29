@@ -4,7 +4,6 @@ import FormHamster from './FormHamster'
 
 const Galleri = () =>{
 
-
     const [ hamsterData, setHamsterData ] = useState<HamsterInfo[] | null>(null)
 
     useEffect(() =>{
