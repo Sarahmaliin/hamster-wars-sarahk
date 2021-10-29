@@ -4,17 +4,17 @@ const Startsida = () =>{
         <section>
             <h1>Välkommen till Hamster Wars</h1>
             <article>
-                Det här är ett spel för unga som gamla, djurälskare men framförallt hamsterälskare. 
+                <p>Det här är ett spel för unga som gamla, djurälskare men framförallt hamsterälskare. </p> 
                 <br/>
-                Hur spelet går till?
+                <p>Hur spelet går till?</p>
                 <br/>
-                I övre högra hörnet har du din meny. Just nu befinner du dig på startsidan. 
-                I nästa flik som vi kallar "Tävla" kommer två hamstrar att slumpas fram. Det är då upp till dig att rösta vilken hamster som är sötast. När du har rösat sparas status i vårt system och den/de hamster/hamstrar med högst betyg presenteras här på startsidan. 
+                <p>I övre högra hörnet har du din meny. Just nu befinner du dig på startsidan. 
+                I nästa flik som vi kallar "Tävla" kommer två hamstrar att slumpas fram. Det är då upp till dig att rösta vilken hamster som är sötast. När du har rösat sparas status i vårt system och den/de hamster/hamstrar med högst betyg presenteras här på startsidan. </p>
                 <br/>
-                Du har även möjlighet att ta bort och lägga till dina egna hamstrar i tävlingen. 
+                <p>Du har även möjlighet att ta bort och lägga till dina egna hamstrar i tävlingen. </p>
             </article>
             <aside>
-                1:a platsen just nu har xxx med y poäng!
+                <p>1:a platsen just nu har xxx med y poäng!</p>
             </aside>
         </section>
         
