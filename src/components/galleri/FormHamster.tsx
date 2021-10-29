@@ -1,8 +1,5 @@
 import { useState } from "react"
 
-
-
-
 const FormHamster = () =>{
 
   const [ showForm, setShowForm ] = useState<boolean>(false)
