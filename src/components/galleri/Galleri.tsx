@@ -10,14 +10,23 @@ const Galleri = () =>{
         sendRequest(setHamsterData)
     }, [])
 
-    const readMore = (index: number) =>{
-        console.log('click',)
+    const readMore = (id: string) =>{
+        console.log('click', id)
     }
 
-    const DeleteHamster = (index: string): void =>{
-        const NewArray: any = hamsterData?.filter(hamster => hamster.id !== index) //vad här ist för any????
-        setHamsterData(NewArray)
+    const deleteMethod = {
+        method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'Accept': 'application/json;charset=UTF-8',
+            },
     }
+
+    async function DeleteOne (id: string) {
+        await fetch(`/hamsters/${id}`, deleteMethod)
+        window.location.reload();
+    }
+
 
     return(
         <>
@@ -33,8 +42,8 @@ const Galleri = () =>{
             <section className="container">
                 <p >{hamster.name}</p>
                     <section className="buttons">
-                        <button onClick={() => DeleteHamster(hamster.id)} className='trashcan'></button>
-                        <button onClick={() => readMore(index)}>läs mer</button>
+                        <button onClick={() => DeleteOne(hamster.id)} className='trashcan'></button>
+                        <button onClick={() => readMore(hamster.id)}>läs mer</button>
                     </section>
             </section>      
         </li>
@@ -51,7 +60,6 @@ async function sendRequest(saveData: any){
     const response = await fetch ('/hamsters')
     const data = await response.json()
     saveData(data)
-    console.log(data)
 }
 
 export default Galleri
