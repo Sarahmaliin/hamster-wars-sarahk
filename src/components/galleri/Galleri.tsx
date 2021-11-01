@@ -5,13 +5,22 @@ import FormHamster from './FormHamster'
 const Galleri = () =>{
 
     const [ hamsterData, setHamsterData ] = useState<HamsterInfo[] | null>(null)
+    const [ show, setShow ] = useState<boolean>(false)
 
     useEffect(() =>{
         sendRequest(setHamsterData)
     }, [])
 
-    const readMore = (id: string) =>{
-        console.log('click', id)
+    const ReadMore = (id: string) =>{
+        
+        if(hamsterData && show){
+            const newArray = hamsterData.findIndex((hamster => hamster.id === id)) //läs mer korrigera
+            const h = hamsterData[newArray]
+            console.log(h.age)
+            
+            
+        }
+        console.log('no data')
     }
 
     const deleteMethod = {
@@ -41,9 +50,15 @@ const Galleri = () =>{
             </figure>
             <section className="container">
                 <p >{hamster.name}</p>
+                <p >{hamster.age}</p>
+                <p >{hamster.favFood}</p>
+                <p >{hamster.loves}</p>
+                <p >{hamster.games}</p>
+                <p >{hamster.wins}</p>
+                <p >{hamster.defeats}</p>
                     <section className="buttons">
                         <button onClick={() => DeleteOne(hamster.id)} className='trashcan'></button>
-                        <button onClick={() => readMore(hamster.id)}>läs mer</button>
+                        <button onClick={() => ReadMore(hamster.id)}>läs mer</button>
                     </section>
             </section>      
         </li>
