@@ -48,9 +48,6 @@ const FormHamster = () =>{
                 <input onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='favFood'  />
                 <input onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='loves'  />
                 <input onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='imgName'  />
-                <input onChange={handleChange} name='wins' value={newHamster.wins} type="number" placeholder='wins'  />
-                <input onChange={handleChange} name='defeats' value={newHamster.defeats} type="number" placeholder='defeats' />
-                <input onChange={handleChange} name='games' value={newHamster.games} type="number" placeholder='games' />
                 <button type="submit">Lägg till</button>
             </form>: <article className="addHamster">
             <h2 onClick={() => setShowForm(!showForm)}>+</h2>

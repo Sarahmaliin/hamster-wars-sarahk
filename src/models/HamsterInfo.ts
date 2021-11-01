@@ -6,5 +6,6 @@ export interface HamsterInfo{
     games: number,
     imgName: string,
     loves: string,
-    wins: number
+    wins: number,
+    id: string
 }
