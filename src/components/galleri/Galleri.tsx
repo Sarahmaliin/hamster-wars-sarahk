@@ -14,6 +14,11 @@ const Galleri = () =>{
         console.log('click',)
     }
 
+    const DeleteHamster = (index: string): void =>{
+        const NewArray: any = hamsterData?.filter(hamster => hamster.id !== index) //vad här ist för any????
+        setHamsterData(NewArray)
+    }
+
     return(
         <>
         
@@ -28,7 +33,7 @@ const Galleri = () =>{
             <section className="container">
                 <p >{hamster.name}</p>
                     <section className="buttons">
-                        <button className='trashcan'></button>
+                        <button onClick={() => DeleteHamster(hamster.id)} className='trashcan'></button>
                         <button onClick={() => readMore(index)}>läs mer</button>
                     </section>
             </section>      
