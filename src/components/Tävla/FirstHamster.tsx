@@ -4,23 +4,41 @@ import { HamsterInfo } from "../../models/HamsterInfo"
 const FirstHamster = () =>{
 
     const [saveRandomOne, setSaveRandomOne] = useState<HamsterInfo[] | null>(null)
+    const [value, setValue] = useState(0)
     const name: any = 'name'
     const imgName: any = 'imgName'
+    const id: any = 'id'
+   
 
     useEffect(() =>{
         sendRequest(setSaveRandomOne)
-    }, [])
+    }, []) 
 
-    console.log(saveRandomOne)
+    async function Vote(){
+        if(saveRandomOne){
+            
+            await setValue(Number(value) + 1)
+            const voting = {wins: value}
+
+            await fetch(`/hamsters/${saveRandomOne[id]}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(voting),
+          })
+        } 
+    }
+
 
     return(
         <ul>
             { saveRandomOne ? 
+            
             <li>
                 <p>Namn: {saveRandomOne[name]}</p>
-                {console.log(saveRandomOne[imgName])}
                 <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
-                <button>Rösta på mig</button>
+                <button onClick={Vote}>Rösta på mig</button>
             </li>
              : null}
             
@@ -28,11 +46,12 @@ const FirstHamster = () =>{
     )
 }
 
+
+
 async function sendRequest(saveData: any){
     const response = await fetch ('/hamsters/random')
     const data = await response.json()
     saveData(data)
-    console.log(data)
 }
 
 export default FirstHamster
