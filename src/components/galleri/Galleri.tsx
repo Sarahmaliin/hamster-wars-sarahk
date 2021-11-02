@@ -47,6 +47,7 @@ const Galleri = () =>{
         <li className="infoCard" key={index}>
             <figure>
                 <img className="infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
+                <img src="../" alt="" />
             </figure>
             <section className="container">
                 <p >{hamster.name}</p>
