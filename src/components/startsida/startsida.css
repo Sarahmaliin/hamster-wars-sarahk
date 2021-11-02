@@ -1,0 +1,27 @@
+.landingSection{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 88vw;
+    min-height: 70vh;
+    margin-top: 3em;
+    background: #fffefe40;
+}
+
+.textSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 60vw;
+}
+
+aside{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border: 1px solid darkgoldenrod;
+    border-radius: 1em;
+    padding: 1.25em;
+}

@@ -2,7 +2,7 @@ import { Link, Switch, Route } from 'react-router-dom'
 import './App.css';
 import BadUrl from './components/BadUrl';
 import Galleri from './components/galleri/Galleri';
-import Startsida from './components/Startsida';
+import Startsida from './components/startsida/Startsida';
 import Tävla from './components/Tävla';
 
 function App() {

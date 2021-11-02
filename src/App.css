@@ -1,3 +1,7 @@
+html{
+  background: #de905f4f;
+}
+
 h1, h2, a{
   font-family: 'Playfair Display', serif;
   color: black;
@@ -22,6 +26,7 @@ header{
   align-items: center;
   min-width: 90vw;
   padding: 3em;
+  background: #C47F54;
 }
 
 .menuSection{
