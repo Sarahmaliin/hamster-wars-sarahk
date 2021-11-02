@@ -23,10 +23,11 @@ const Tävla = () =>{
     )
 }
 
-async function sendRequest(saveRandom: any){
+async function sendRequest(saveData: any){
     const response = await fetch ('/hamsters/random')
     const data = await response.json()
-    saveRandom(data)
+    saveData(data)
+    console.log(data)
 }
 
 export default Tävla
