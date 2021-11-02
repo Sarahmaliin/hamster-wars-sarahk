@@ -3,7 +3,7 @@ import './App.css';
 import BadUrl from './components/BadUrl';
 import Galleri from './components/galleri/Galleri';
 import Startsida from './components/startsida/Startsida';
-import Tävla from './components/Tävla';
+import Tävla from './components/Tävla/Tävla';
 
 function App() {
   return (
