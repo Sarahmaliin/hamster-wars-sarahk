@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { HamsterInfo } from '../../models/HamsterInfo'
 import FormHamster from './FormHamster'
-import Overlay from './Overlay'
+import './Galleri.css'
 
 const Galleri = () =>{
 

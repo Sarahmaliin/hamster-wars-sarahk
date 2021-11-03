@@ -1,5 +1,5 @@
 html{
-  background: #de905f4f;
+  background: #BF9A7A;
 }
 
 h1, h2, a{
@@ -26,7 +26,7 @@ header{
   align-items: center;
   min-width: 90vw;
   padding: 3em;
-  background: #C47F54;
+  background: #806752;
 }
 
 .menuSection{
@@ -49,67 +49,4 @@ a{
 
 a:active{
   color: rgb(65, 65, 65);
-}
-
-main{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 90vw;
-}
-
-.addHamster{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  width: 85vw;
-  padding: 1em;
-}
-
-.grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 2em;
-  min-width: 90vw;
-}
-
-.infoCard{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 15em;
-  max-width: 17em;
-  border: 1px solid darkgrey;
-  border-radius: 1em;
-  padding: 2em 0;
-}
-
-.infoCard > figure{
-  max-height: 10em;
-  min-height: 9em;
-  min-width: 8em;
-  margin-block: unset;
-}
-
-.infoCardImg{
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.buttons{
-  display: flex;
-  flex-direction: row;
-}
-
-.buttons > button{
-  padding: .25em;
-}
-
-.trashcan{
-  background: no-repeat url(../src/icons/trashcan1.svg);
-  width: 2em;
-  height: 3em;
 }
