@@ -51,7 +51,8 @@ const FormHamster = () =>{
     }
 
     function IsValidImg(hamsterImg: string): boolean{
-        return hamsterImg.length >= 3
+        return hamsterImg.includes('-') || hamsterImg.includes('.') || hamsterImg.length >= 3
+        
     }
 
 
@@ -67,18 +68,19 @@ const FormHamster = () =>{
         let data = await res.json()
         setNewHamster(data)
         console.log(newHamster)
+        
     }
 
     const SaveInput = (event: any) =>{
         if(!formIsValid){
-            console.log('form is not valid')
+            console.log('form is not valid') //lägger ej till ny hamster, men refreshar sidan, hur ändra?
             return
         } 
         else{
             console.log(formIsValid)
             event.preventDefault()
             saveForm()
-            
+            window.location.reload()
         }
         
     }
@@ -93,12 +95,16 @@ const FormHamster = () =>{
             <article className="addHamster">
                 <h2 onClick={() => setShowForm(!showForm)}>-</h2>
                 </article>
-                <input onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
-                <input onChange={handleChange} name='age' placeholder='Ålder' value={Number(newHamster.age)} type="string" required  />
-                <input onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='Favoritmat' required />
-                <input onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
-                <input onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn ex hamster-3.jpg' required />
+                <section className='formFields'>
+                    <h1 className='headline'>Lägg till en ny hamster</h1>
+                    <input onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
+                    <input onChange={handleChange} name='age' placeholder='Ålder' value={Number(newHamster.age)} type="string" required  />
+                    <input onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='Favoritmat' required />
+                    <input onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
+                    <input onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn (hamster-3.jpg)' required />
                 <button  type="submit">Lägg till</button>
+                </section>
+                
             </form>: <article className="addHamster">
             <h2 onClick={() => setShowForm(!showForm)}>+</h2>
         </article>}
