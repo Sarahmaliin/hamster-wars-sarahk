@@ -75,8 +75,8 @@ async function sendRequestTwo(saveD: any){
     console.log(data)
 }
     return(
-        <>
-        <section>
+        <section className='compete'>
+        <section className='hamsterCompete'>
            <ul >
             { saveRandomOne && saveRandomTwo ? 
             <>
@@ -119,7 +119,7 @@ async function sendRequestTwo(saveD: any){
             : null}
             
         </section> 
-        </>
+        </section>
 
     )
 }

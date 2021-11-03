@@ -21,7 +21,12 @@ aside{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 1px solid darkgoldenrod;
+    border: 1.5px solid darkgoldenrod;
+    min-height: 15em;
     border-radius: 1em;
     padding: 1.25em;
+}
+
+aside > ul{
+    padding-inline: unset;
 }
