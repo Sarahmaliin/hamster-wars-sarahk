@@ -1,0 +1,7 @@
+.info.true{
+display: flex;
+}
+
+.info.false{
+    display: none;
+}

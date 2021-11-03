@@ -9,6 +9,9 @@ const FirstHamster = () =>{
     const imgName: any = 'imgName'
     const id: any = 'id'
    
+    const Test = () =>{
+        console.log('test')
+    }
 
     useEffect(() =>{
         sendRequest(setSaveRandomOne)
@@ -27,17 +30,17 @@ const FirstHamster = () =>{
             },
             body: JSON.stringify(voting),
           })
-        } 
+         
+        }  
     }
 
-
     return(
-        <ul>
+        <ul >
             { saveRandomOne ? 
             
-            <li>
-                <p>Namn: {saveRandomOne[name]}</p>
+            <li >
                 <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
+                <p>Namn: {saveRandomOne[name]}</p>
                 <button onClick={Vote}>Rösta på mig</button>
             </li>
              : null}
@@ -45,8 +48,6 @@ const FirstHamster = () =>{
         </ul>
     )
 }
-
-
 
 async function sendRequest(saveData: any){
     const response = await fetch ('/hamsters/random')

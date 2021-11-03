@@ -1,0 +1,17 @@
+.hamsters{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 90vw;
+}    
+
+img{
+    margin-block: unset;
+    width: 80%;
+}
+
+ul{
+    list-style: none;
+}
+
