@@ -5,3 +5,10 @@ display: flex;
 .info.false{
     display: none;
 }
+
+.valid {
+	border-color: #14971E;
+}
+.invalid {
+	border-color: #E0471F;
+}

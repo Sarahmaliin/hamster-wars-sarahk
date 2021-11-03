@@ -26,11 +26,19 @@ const Tävla = () =>{
         sendRequestTwo(setSaveRandomTwo)
     }, []) 
 
-    //sparar inte vid nya spel...
-    //om trycks på så vänta på uppdaterad data från vinst/förlust innan overlay
-    //sedan sätt förloraren på förlust
-    //
+    // useEffect(() => {
+    //     setValue(JSON.parse(window.localStorage.getItem('value')|| '{}')); //sparar value vilket innehåller hamstrarnas vinster, uppdaterar varje
+    //   }, []);
+    
+    //   useEffect(() => {
+    //     window.localStorage.setItem('value', value.toString());
+    //   }, [value]);
 
+    //få in så uppdaterar vald hamster
+    //få in värde i overlay
+    //gör loser funktionen
+
+    
     async function Vote(event: any){
             if(saveRandomOne){
             
@@ -100,7 +108,7 @@ async function sendRequestTwo(saveD: any){
             </li>
             <li>
             <h1>Förlorare</h1>
-            <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />
+            <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
             <p>Namn: {saveRandomTwo[name]}</p> 
             <p>Vinster: {saveRandomTwo[wins]}</p>
             <p>Förluster: {saveRandomTwo[defeats]}</p>
