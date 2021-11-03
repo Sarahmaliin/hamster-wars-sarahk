@@ -1,26 +1,23 @@
 import { useEffect, useState } from 'react'
 import { HamsterInfo } from '../../models/HamsterInfo'
 import FormHamster from './FormHamster'
+import Overlay from './Overlay'
 
 const Galleri = () =>{
 
     const [ hamsterData, setHamsterData ] = useState<HamsterInfo[] | null>(null)
-    const [ show, setShow ] = useState<boolean>(false)
+    const [ show, setShow ] = useState<boolean>(true)
+
 
     useEffect(() =>{
         sendRequest(setHamsterData)
     }, [])
 
-    const ReadMore = (id: string) =>{
-        
-        if(hamsterData && show){
-            const newArray = hamsterData.findIndex((hamster => hamster.id === id)) //läs mer korrigera
-            const h = hamsterData[newArray]
-            console.log(h.age)
-            
-            
+    const ReadMore = (index: string) =>{
+        if (hamsterData){
+            let hamster = hamsterData.filter(hamster => hamster.id.includes(index))
+            setShow(!show)
         }
-        console.log('no data')
     }
 
     const deleteMethod = {
@@ -39,9 +36,7 @@ const Galleri = () =>{
 
     return(
         <>
-        
         < FormHamster />
-
         <ul className="grid">
         {hamsterData ? hamsterData.map((hamster, index) =>(   
         <li className="infoCard" key={index}>
@@ -49,25 +44,35 @@ const Galleri = () =>{
                 <img className="infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
                 <img src="../" alt="" />
             </figure>
+            {show ?  
             <section className="container">
-                <p >{hamster.name}</p>
-                <p >{hamster.age}</p>
-                <p >{hamster.favFood}</p>
-                <p >{hamster.loves}</p>
-                <p >{hamster.games}</p>
-                <p >{hamster.wins}</p>
-                <p >{hamster.defeats}</p>
-                    <section className="buttons">
+            <p >Namn: {hamster.name}</p>
+            <section className="buttons">
+                    <button onClick={() => DeleteOne(hamster.id)} className='trashcan'></button>
+                   <button onClick={() => ReadMore(hamster.id)}>läs mer</button>
+                </section>
+        </section> 
+            : <section className="container">
+                <p >Namn: {hamster.name}</p>
+                <p >Ålder: {hamster.age}</p>
+                <p >Favoritmat: {hamster.favFood}</p>
+                <p >Älskar: {hamster.loves}</p>
+                <p >Spel: {hamster.games}</p>
+                <p >Vinster: {hamster.wins}</p>
+                <p >Förluster: {hamster.defeats}</p>
+                <section className="buttons">
                         <button onClick={() => DeleteOne(hamster.id)} className='trashcan'></button>
-                        <button onClick={() => ReadMore(hamster.id)}>läs mer</button>
+                       <button onClick={() => ReadMore(hamster.id)}>läs mindre</button>
                     </section>
-            </section>      
+            </section> 
+            }        
         </li>
         ))
         :
         'Loading data'
         } 
     </ul>
+     
     </>
     )
 }

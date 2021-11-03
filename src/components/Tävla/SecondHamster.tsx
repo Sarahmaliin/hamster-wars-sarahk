@@ -6,20 +6,17 @@ const SecondHamster = () =>{
     const [saveRandomTwo, setSaveRandomTwo] = useState<HamsterInfo[] | null>(null)
     const name: any = 'name'
     const imgName: any = 'imgName'
-    
-    console.log(imgName)
 
     useEffect(() =>{
         sendRequest(setSaveRandomTwo)
     }, [])
 
     return(
-        <ul>
+        <ul >
             { saveRandomTwo ? 
-            <li>
-                <p>Namn: {saveRandomTwo[name]}</p>
-                {console.log(saveRandomTwo[imgName])}
+            <li >
                 <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />
+                <p>Namn: {saveRandomTwo[name]}</p>
                 <button>Rösta på mig</button>
             </li>
              : null}
