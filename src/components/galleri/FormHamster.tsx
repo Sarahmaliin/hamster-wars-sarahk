@@ -6,13 +6,16 @@ const FormHamster = () =>{
   const [ showForm, setShowForm ] = useState<boolean>(false)
     const [hamsterName, setHamsterName] = useState('')
     const [age, setAge] = useState(0)
+    const [hamsterFood, setHamsterFood] = useState('')
+    const [hamsterLove, setHamsterLove] = useState('')
+    const [hamsterImg, setHamsterImg] = useState('')
 
     const [newHamster, setNewHamster] = useState({
         name: hamsterName,
         age: age,
-        favFood: '',
-        loves: '',
-        imgName: 'hamster-20.jpg',
+        favFood: hamsterFood,
+        loves: hamsterLove,
+        imgName: hamsterImg,
         wins: 0,
         defeats: 0,
         games: 0
@@ -20,11 +23,15 @@ const FormHamster = () =>{
     )
     
     const NameIsValid = IsValidName(hamsterName)
-    const nameClass = NameIsValid ? 'valid': 'invalid'
     const ageIsValid = isValidAge(age)
-    const formIsValid = NameIsValid && ageIsValid
+    const FoodIsValid = IsValidFood(hamsterFood)
+    const LoveIsValid = IsValidLove(hamsterLove)
+    const ImgIsValid = IsValidImg(hamsterImg)
+
+    const formIsValid = NameIsValid && ageIsValid && FoodIsValid && LoveIsValid && ImgIsValid
+
     function IsValidName(hamsterName: string): boolean{
-        return hamsterName.length <= 3
+        return hamsterName.length >= 3
     }
 
     function isValidAge(age: number): boolean {
@@ -35,6 +42,20 @@ const FormHamster = () =>{
         return true
     }
 
+    function IsValidFood(hamsterFood: string): boolean{
+        return hamsterFood.length >= 3
+    }
+
+    function IsValidLove(hamsterLove: string): boolean{
+        return hamsterLove.length >= 3
+    }
+
+    function IsValidImg(hamsterImg: string): boolean{
+        return hamsterImg.length >= 3
+    }
+
+
+    
     async function saveForm () {
         const res = await fetch('/hamsters', {
             method: 'POST',
@@ -49,8 +70,17 @@ const FormHamster = () =>{
     }
 
     const SaveInput = (event: any) =>{
-        event.preventDefault()
-        saveForm()
+        if(!formIsValid){
+            console.log('form is not valid')
+            return
+        } 
+        else{
+            console.log(formIsValid)
+            event.preventDefault()
+            saveForm()
+            
+        }
+        
     }
 
     const handleChange = (event: any) =>{
@@ -63,12 +93,12 @@ const FormHamster = () =>{
             <article className="addHamster">
                 <h2 onClick={() => setShowForm(!showForm)}>-</h2>
                 </article>
-                <input className={nameClass} onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='name' />
-                <input onChange={handleChange} name='age' placeholder='age' value={Number(newHamster.age)} type="string"   />
-                <input onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='favFood'  />
-                <input onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='loves'  />
-                <input onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='imgName'  />
-                <button onClick={() => window.location.reload()} disabled={!formIsValid} type="submit">Lägg till</button>
+                <input onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
+                <input onChange={handleChange} name='age' placeholder='Ålder' value={Number(newHamster.age)} type="string" required  />
+                <input onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='Favoritmat' required />
+                <input onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
+                <input onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn ex hamster-3.jpg' required />
+                <button  type="submit">Lägg till</button>
             </form>: <article className="addHamster">
             <h2 onClick={() => setShowForm(!showForm)}>+</h2>
         </article>}
