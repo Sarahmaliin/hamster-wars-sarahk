@@ -13,14 +13,14 @@ app.use((req, res, next) => {
 	next()
 })
 
-app.use(express.static(__dirname + '/index.html'))
+app.use(express.static(__dirname + '/public'))
 //routes/endpoints
 
 app.use('/hamsters', hamsterRouter)
 
 // Behövs om man använder React Router
 app.get('*', (req, res) => {
-	res.sendFile(__dirname + '/build/index.html')
+	res.sendFile('index.html')
 })
 
 app.listen(PORT, () =>{
