@@ -32,6 +32,8 @@ const Tävla = () =>{
         sendRequestTwo(setSaveRandomTwo)
     }, []) 
 
+    //om flyttar ut och sätter i egen funktion så får jag gul-error med som ber mig sätta in den i useEffect
+
     useEffect(() =>{
             const voting = {wins: winnerOne}
             if(saveRandomOne){
