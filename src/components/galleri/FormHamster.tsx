@@ -4,11 +4,11 @@ import './Galleri.css'
 const FormHamster = () =>{
 
   const [ showForm, setShowForm ] = useState<boolean>(false)
-    const [hamsterName, setHamsterName] = useState('')
-    const [age, setAge] = useState(0)
-    const [hamsterFood, setHamsterFood] = useState('')
-    const [hamsterLove, setHamsterLove] = useState('')
-    const [hamsterImg, setHamsterImg] = useState('')
+    const [hamsterName] = useState('')
+    const [age] = useState(0)
+    const [hamsterFood] = useState('')
+    const [hamsterLove] = useState('')
+    const [hamsterImg] = useState('')
 
     const [newHamster, setNewHamster] = useState({
         name: hamsterName,
