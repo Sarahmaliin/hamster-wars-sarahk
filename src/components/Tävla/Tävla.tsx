@@ -40,7 +40,9 @@ const Tävla = () =>{
 
     
     async function Vote(event: any){
-            if(saveRandomOne){
+        console.log((event.target as Element).id)
+        const BtnId = event.target.id
+            if(saveRandomOne && BtnId === saveRandomOne[id]){
             
             await setValue(Number(value) + 1)
             const voting = {wins: value}
@@ -55,6 +57,9 @@ const Tävla = () =>{
          setVisible(!visible)
          console.log(voting)
         }  
+        else {
+            console.log('winner is number two')
+        }
         }
 
     const RefreshPage = () =>{
@@ -83,12 +88,12 @@ async function sendRequestTwo(saveD: any){
             <li >
                 <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
                 <p>Namn: {saveRandomOne[name]}</p>
-                <button id='firstBtn' onClick={Vote}>Rösta på mig</button> {/* om knapp ej klickad på så räkna ut förlust */}
+                <button id='firstBtn' onClick={(event) => Vote(event)}>Rösta på mig</button> {/* om knapp ej klickad på så räkna ut förlust */}
             </li>
             <li >
             <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />
             <p>Namn: {saveRandomTwo[name]}</p>
-            <button id='secondBtn' onClick={Vote}>Rösta på mig</button>
+            <button id='secondBtn' onClick={(event) => Vote(event)}>Rösta på mig</button>
         </li>
         </>
              : null}
