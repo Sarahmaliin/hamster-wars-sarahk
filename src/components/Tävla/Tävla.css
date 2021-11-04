@@ -1,3 +1,36 @@
+*{
+    margin-block: unset;
+    margin-inline: unset;
+    padding-inline: unset;
+}
+
+p{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: .75em;
+}
+
+h1{
+    font-size: 2em;
+    margin-left: 1.75em;
+}
+
+.overlay-text{
+    margin-left: 2.5em;
+}
+
+button{
+    font-size: 1em;
+    padding: 1em;
+    border: 1px solid #403429;
+    border-radius: 1em;
+}
+
+button:hover{
+    background-color: #BF9A7A;
+    color: black;
+}
+
 .hamsters{
     display: flex;
     flex-direction: row;
@@ -5,9 +38,20 @@
     align-items: center;
 }    
 
-img{
-    margin-block: unset;
-    width: 80%;
+figure{
+    height: 30vh;
+    max-width: 90vw;
+    min-width: 42vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+figure > img{
+    object-fit: cover;
+    object-position: center;
+    width: 20em;
+    height: 15em;
 }
 
 .compete{
@@ -22,16 +66,14 @@ img{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 56.5em;
-    min-height: 30em;
+    max-width: 90vw;
+    max-height: 40em;
     padding: 2em 0;
-    margin: 0 1em 0 0;
+    margin: 2em 1em 0 0;
     background: #ffffff45;
 }
 
 ul{
-    margin-inline: unset;
-    margin-block: unset;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -39,15 +81,47 @@ ul{
     list-style: none;
 }
 
+.competingHamsters{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4em;
+    width: 20em;
+}
+
 .overlay.true{
     display: flex;
     position: absolute;
-    max-width: 50vw;
+    max-width: 88.5vw;
     background: white;
-    top: 13em;
-    right: 4em;
+    top: 11em;
+    right: 4.2em;
+    padding: 2em 0;
 }
 
 .overlay.false{
     display: none;
+}
+
+.results{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-hamster{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.restartBtn{
+    width: 73vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    padding-top: 2em;
 }

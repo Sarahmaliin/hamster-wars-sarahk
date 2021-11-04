@@ -42,13 +42,12 @@ const Galleri = () =>{
         <li className="infoCard" key={index}>
             <figure>
                 <img className="infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
-                <img src="../" alt="" />
             </figure>
             {show ?  
             <section className="container">
-            <p >Namn: {hamster.name}</p>
+            <p >{hamster.name}</p>
             <section className="buttons">
-                    <button onClick={() => DeleteOne(hamster.id)} className='trashcan'></button>
+                    <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
                    <button onClick={() => ReadMore(hamster.id)}>läs mer</button>
                 </section>
         </section> 
@@ -61,7 +60,7 @@ const Galleri = () =>{
                 <p >Vinster: {hamster.wins}</p>
                 <p >Förluster: {hamster.defeats}</p>
                 <section className="buttons">
-                        <button onClick={() => DeleteOne(hamster.id)} className='trashcan'></button>
+                <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
                        <button onClick={() => ReadMore(hamster.id)}>läs mindre</button>
                     </section>
             </section> 

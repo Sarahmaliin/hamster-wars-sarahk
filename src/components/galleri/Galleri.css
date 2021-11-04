@@ -51,16 +51,28 @@ main{
   }
   
   .infoCardImg{
-	max-width: 100%;
-	max-height: 100%;
+	max-width: 80%;
+    max-height: 100%;
+  }
+
+  .container{
+	width: 78%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
   }
   
   .buttons{
-	display: flex;
-	flex-direction: row;
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .buttons > button{
+	max-height: 2.25em;
 	padding: .25em;
 	background-color: #ffffff45;
 	border: .5px solid #403429;
@@ -72,6 +84,11 @@ main{
 	background: no-repeat url(../../icons/trashcan1.svg);
 	width: 2em;
 	height: 3em;
+  }
+
+  .trashcan:hover{
+	background-color: #BF9A7A;
+    color: black;
   }
 
   /* Form CSS */
