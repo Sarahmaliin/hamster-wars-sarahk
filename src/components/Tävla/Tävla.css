@@ -1,0 +1,53 @@
+.hamsters{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}    
+
+img{
+    margin-block: unset;
+    width: 80%;
+}
+
+.compete{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamsterCompete{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 56.5em;
+    min-height: 30em;
+    padding: 2em 0;
+    margin: 0 1em 0 0;
+    background: #ffffff45;
+}
+
+ul{
+    margin-inline: unset;
+    margin-block: unset;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.overlay.true{
+    display: flex;
+    position: absolute;
+    max-width: 50vw;
+    background: white;
+    top: 13em;
+    right: 4em;
+}
+
+.overlay.false{
+    display: none;
+}

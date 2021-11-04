@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Link, Switch, Route } from 'react-router-dom'
 import './App.css';
+import BadUrl from './components/BadUrl';
+import Galleri from './components/galleri/Galleri';
+import Startsida from './components/startsida/Startsida';
+import Tävla from './components/Tävla/Tävla';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <header>
+          <h2>Hamster Wars</h2>
+          <nav className="menuSection">
+            <Link to='/'>Startsida</Link>
+            <Link to='/Tävla'>Tävla</Link>
+            <Link to='/Galleri'>Galleri</Link>
+          </nav>
+        </header>
+        <main>
+          <Switch>
+            <Route exact path='/'> < Startsida /> </Route>
+            <Route path='/Tävla'> < Tävla /> </Route>
+            <Route path='/Galleri'> < Galleri /> </Route>
+            <Route path='/'> <BadUrl /></Route>
+          </Switch>
+        </main>
     </div>
   );
 }
