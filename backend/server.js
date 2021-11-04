@@ -20,7 +20,7 @@ app.use('/hamsters', hamsterRouter)
 
 // Behövs om man använder React Router
 app.get('*', (req, res) => {
-	res.sendFile('index.html')
+	res.sendFile(__dirname + '/build/index.html')
 })
 
 app.listen(PORT, () =>{
