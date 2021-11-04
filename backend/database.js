@@ -5,7 +5,7 @@ let privateKey;
 if( process.env.PRIVATE_KEY ){
     privateKey = JSON.parse(process.env.PRIVATE_KEY)
 } else{
-    privateKey = require('./secrets/secret.json')
+    privateKey = require('./secret/secret.json')
 }
 
 function connect() {
