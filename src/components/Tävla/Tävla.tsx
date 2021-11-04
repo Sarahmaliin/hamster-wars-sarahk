@@ -14,7 +14,8 @@ import { HamsterInfo } from "../../models/HamsterInfo"
 const Tävla = () =>{
     const [saveRandomOne, setSaveRandomOne] = useState<HamsterInfo[] | null>(null)
     const [saveRandomTwo, setSaveRandomTwo] = useState<HamsterInfo[] | null>(null)
-    const [value, setValue] = useState(0)
+    const [valueOne, setValueOne] = useState(0)
+    const [valueTwo, setValueTwo] = useState(0)
     const [visible, setVisible] = useState<boolean>(false)
     
 
@@ -39,23 +40,41 @@ const Tävla = () =>{
     //gör loser funktionen
 
     
-    async function Vote(event: any){
-            if(saveRandomOne){
-            
-            await setValue(Number(value) + 1)
-            const voting = {wins: value}
+    async function Vote(HamsterId: HamsterInfo){
+        console.log(HamsterId)
+            if(saveRandomOne && HamsterId === saveRandomOne[id]){
+            console.log(saveRandomOne[id])
+            console.log('winner is hamster one')
+             await setValueOne(Number(valueOne) + 1)
+             const voting = {wins: valueOne}
 
-            await fetch(`/hamsters/${saveRandomOne[id]}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(voting),
-          })
-         setVisible(!visible)
-         console.log(voting)
-        }  
+             await fetch(`/hamsters/${saveRandomOne[id]}`, {
+             method: 'PUT',
+             headers: {
+               'Content-Type': 'application/json',
+             },
+             body: JSON.stringify(voting),
+           })
+          setVisible(!visible)
+          console.log(voting)
         }
+        else if(saveRandomTwo && HamsterId === saveRandomTwo[id]){
+            console.log('winner is number two')
+            await setValueTwo(Number(valueTwo) + 1)
+             const voting = {wins: valueTwo}
+
+             await fetch(`/hamsters/${saveRandomTwo[id]}`, {
+             method: 'PUT',
+             headers: {
+               'Content-Type': 'application/json',
+             },
+             body: JSON.stringify(voting),
+           })
+          setVisible(!visible)
+          console.log(voting)
+        }
+        }  
+        
 
     const RefreshPage = () =>{
         window.location.reload();
@@ -83,12 +102,12 @@ async function sendRequestTwo(saveD: any){
             <li >
                 <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
                 <p>Namn: {saveRandomOne[name]}</p>
-                <button id='firstBtn' onClick={Vote}>Rösta på mig</button> {/* om knapp ej klickad på så räkna ut förlust */}
+                <button onClick={() => Vote(saveRandomOne[id])}>Rösta på mig</button> {/* om knapp ej klickad på så räkna ut förlust */}
             </li>
             <li >
             <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />
             <p>Namn: {saveRandomTwo[name]}</p>
-            <button id='secondBtn' onClick={Vote}>Rösta på mig</button>
+            <button onClick={() => Vote(saveRandomTwo[id])}>Rösta på mig</button>
         </li>
         </>
              : null}
