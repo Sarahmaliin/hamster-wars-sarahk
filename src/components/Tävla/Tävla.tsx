@@ -136,14 +136,18 @@ async function sendRequestTwo(saveD: any){
            <ul >
             { saveRandomOne && saveRandomTwo ? 
             <>
-            <li >
-                <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
-                <p>Namn: {saveRandomOne[name]}</p>
+            <li className="competingHamsters">
+                <figure>
+                    <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
+                </figure>
+                <p>{saveRandomOne[name]}</p>
                 <button onClick={() => Vote(saveRandomOne[id])}>Rösta på mig</button> {/* om knapp ej klickad på så räkna ut förlust */}
             </li>
-            <li >
-            <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />
-            <p>Namn: {saveRandomTwo[name]}</p>
+            <li className="competingHamsters" >
+            <figure>
+                 <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />   
+            </figure>
+            <p>{saveRandomTwo[name]}</p>
             <button onClick={() => Vote(saveRandomTwo[id])}>Rösta på mig</button>
         </li>
         </>
@@ -153,24 +157,31 @@ async function sendRequestTwo(saveD: any){
         <section className={'overlay ' + visible}>
             
             { saveRandomOne && saveRandomTwo ?
-            <ul>
-            <li>
+            <ul className='results'>
+            <li className='results-hamster'>
                 <h1>Vinnare: </h1>
-                <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
-                <p>Namn: {saveRandomOne[name]}</p> 
-                <p>Vinster: {winnerOne}</p>
-                <p>Förluster: {loserOne}</p>
+                <figure className='results-image'>
+                    <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
+                </figure>
+                <p className='overlay-text'>Namn: {saveRandomOne[name]}</p> 
+                <p className='overlay-text'>Vinster: {winnerOne}</p>
+                <p className='overlay-text'>Förluster: {loserOne}</p>
 
             </li>
-            <li>
+            <li className='results-hamster'>
             <h1>Förlorare</h1>
-            <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
-            <p>Namn: {saveRandomTwo[name]}</p> 
-            <p>Vinster: {winnerTwo}</p>
-            <p>Förluster: {loserTwo}</p>
+            <figure className='results-image'>
+                <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
+            </figure>
+            <p className='overlay-text'>Namn: {saveRandomTwo[name]}</p> 
+            <p className='overlay-text'>Vinster: {winnerTwo}</p>
+            <p className='overlay-text'>Förluster: {loserTwo}</p>
 
         </li>
-            <button onClick={() => window.location.reload()}>Starta nytt spel</button>
+            <section className='restartBtn'>
+                <button onClick={() => window.location.reload()}>Starta nytt spel</button>
+            </section>
+            
             </ul>
             : null}
             
