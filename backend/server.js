@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 	next()
 })
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/index.html'))
 //routes/endpoints
 
 app.use('/hamsters', hamsterRouter)
