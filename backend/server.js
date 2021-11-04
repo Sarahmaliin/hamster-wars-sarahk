@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const PORT = process.env.PORT || 5555; //om heroku ger port anv den, om undefined anv vår egna port om kör på egen dator
+const PORT = process.env.PORT || 5550; //om heroku ger port anv den, om undefined anv vår egna port om kör på egen dator
 const hamsterRouter = require('./routes/hamsters.js')
 
 app.use(cors())
@@ -19,7 +19,7 @@ app.use(express.static(__dirname + '/public'))
 app.use('/hamsters', hamsterRouter)
 
 app.get('*', (req, res) => {
-	res.sendFile(__dirname + '/build/index.html')
+	res.sendFile(__dirname + 'index.html')
 })
 
 app.listen(PORT, () =>{
