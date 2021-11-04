@@ -40,7 +40,7 @@ aside > ul{
     line-height: 1.5em;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     list-style: none;
 }

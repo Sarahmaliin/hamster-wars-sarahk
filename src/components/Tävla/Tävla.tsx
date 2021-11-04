@@ -1,5 +1,5 @@
 import './Tävla.css'
-import { MouseEventHandler, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { HamsterInfo } from "../../models/HamsterInfo"
 
     const name: any = 'name'
@@ -7,6 +7,7 @@ import { HamsterInfo } from "../../models/HamsterInfo"
     const id: any = 'id'
     const wins: any = 'wins'
     const defeats: any = 'defeats'
+    const games: any = 'games'
 
 
 
@@ -18,6 +19,8 @@ const Tävla = () =>{
     const [winnerTwo, setWinnerTwo] = useState<Number>(0)
     const [loserOne, setLoserOne] = useState<Number>(0)
     const [loserTwo, setLoserTwo] = useState<Number>(0)
+    const [gameOne, setGameOne] = useState<Number>(0)
+    const [gameTwo, setGameTwo] = useState<Number>(0)
     const [visible, setVisible] = useState<boolean>(false)
     
 
@@ -93,26 +96,63 @@ useEffect(() =>{
      
 }, [loserTwo])
 
+useEffect(() =>{
+    const game1 = {games: gameOne}
+    if(saveRandomOne){
+        fetch(`/hamsters/${saveRandomOne[id]}`, {
+     method: 'PUT',
+     headers: {
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify(game1),
+   })
+  setVisible(!visible)
+  console.log(game1)
+    }
+     
+}, [gameOne])
+
+useEffect(() =>{
+    const game2 = {games: gameTwo}
+    if(saveRandomTwo){
+        fetch(`/hamsters/${saveRandomTwo[id]}`, {
+     method: 'PUT',
+     headers: {
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify(game2),
+   })
+  setVisible(!visible)
+  console.log(game2)
+    }
+     
+}, [gameTwo])
+
     async function Vote(HamsterId: HamsterInfo){
         console.log(HamsterId)
         if(saveRandomOne && saveRandomTwo){
             if(HamsterId === saveRandomOne[id]){
-                console.log(saveRandomOne[id])
                 console.log('winner is hamster one')
                 const updateNumber = Number(saveRandomOne[wins]) + 1
                 setWinnerOne(updateNumber)
                 const updateLoser2 = Number(saveRandomTwo[defeats]) + 1
                 setLoserTwo(updateLoser2)
+                const updateGame1 = Number(saveRandomOne[games]) + 1
+                setGameOne(updateGame1)
+                const updateGame2 = Number(saveRandomTwo[games]) + 1
+                setGameTwo(updateGame2)
                 }
             if(HamsterId === saveRandomTwo[id]){
                 console.log('winner two')
-                console.log(saveRandomTwo[id])
                 const updateNumber2 = Number(saveRandomTwo[wins]) + 1
                 setWinnerTwo(updateNumber2)
                 console.log('loser 1')
                 const updateLoser1 = Number(saveRandomOne[defeats]) + 1
                 setLoserOne(updateLoser1)
-                
+                const updateGame1 = Number(saveRandomOne[games]) + 1
+                setGameOne(updateGame1)
+                const updateGame2 = Number(saveRandomTwo[games]) + 1
+                setGameTwo(updateGame2)
             }
         }
             
@@ -166,6 +206,7 @@ async function sendRequestTwo(saveD: any){
                 <p className='overlay-text'>Namn: {saveRandomOne[name]}</p> 
                 <p className='overlay-text'>Vinster: {winnerOne}</p>
                 <p className='overlay-text'>Förluster: {loserOne}</p>
+                <p className='overlay-text'>Matcher: {gameOne}</p>
 
             </li>
             <li className='results-hamster'>
@@ -176,6 +217,7 @@ async function sendRequestTwo(saveD: any){
             <p className='overlay-text'>Namn: {saveRandomTwo[name]}</p> 
             <p className='overlay-text'>Vinster: {winnerTwo}</p>
             <p className='overlay-text'>Förluster: {loserTwo}</p>
+            <p className='overlay-text'>Matcher: {gameTwo}</p>
 
         </li>
             <section className='restartBtn'>
