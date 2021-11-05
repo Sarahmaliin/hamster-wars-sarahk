@@ -20,8 +20,7 @@ app.use('/hamsters', hamsterRouter)
 
 // Denna som ger error i heroku?
 app.get('*', (req, res) => {
-	const adress = path.join(__dirname, 'build', 'index-html')
-	res.sendFile(adress)
+	res.sendFile(__dirname + '/build/index.html')
 })
 
 app.listen(PORT, () =>{
