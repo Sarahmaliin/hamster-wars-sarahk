@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/public'))
 
 app.use('/hamsters', hamsterRouter)
 
-// Behövs om man använder React Router
+// Denna som ger error i heroku?
 app.get('*', (req, res) => {
 	res.sendFile(__dirname + '/build/index.html')
 })
