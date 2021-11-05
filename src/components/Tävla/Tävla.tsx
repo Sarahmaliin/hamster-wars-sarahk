@@ -214,7 +214,7 @@ async function sendRequestTwo(saveD: any){
             <li className='results-hamster'>
             <h1>Förlorare</h1>
             <figure className='results-image'>
-                <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
+                <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />
             </figure>
             <p className='overlay-text'>Namn: {saveRandomTwo[name]}</p> 
             <p className='overlay-text'>Vinster: {winnerTwo}</p>
