@@ -47,7 +47,7 @@ const Tävla = () =>{
           setVisible(!visible)
           console.log(voting)
             }
-             
+             // eslint-disable-next-line
     }, [winnerOne])
 
     useEffect(() =>{
@@ -63,7 +63,7 @@ const Tävla = () =>{
       setVisible(!visible)
       console.log(voting2)
         }
-         
+         // eslint-disable-next-line
 }, [winnerTwo])
 
 useEffect(() =>{
@@ -79,7 +79,7 @@ useEffect(() =>{
   setVisible(!visible)
   console.log(votingLose1)
     }
-     
+     // eslint-disable-next-line
 }, [loserOne])
 
 useEffect(() =>{
@@ -95,7 +95,7 @@ useEffect(() =>{
   setVisible(!visible)
   console.log(votingLose2)
     }
-     
+     // eslint-disable-next-line
 }, [loserTwo])
 
 useEffect(() =>{
@@ -111,7 +111,7 @@ useEffect(() =>{
   setVisible(!visible)
   console.log(game1)
     }
-     
+     // eslint-disable-next-line
 }, [gameOne])
 
 useEffect(() =>{
@@ -127,7 +127,7 @@ useEffect(() =>{
   setVisible(!visible)
   console.log(game2)
     }
-     
+     // eslint-disable-next-line
 }, [gameTwo])
 
     async function Vote(HamsterId: HamsterInfo){

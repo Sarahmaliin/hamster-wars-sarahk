@@ -15,8 +15,12 @@ const Galleri = () =>{
 
     const ReadMore = (index: string) =>{
         if (hamsterData){
-            hamsterData.filter(hamster => hamster.id.includes(index))
-            setShow(!show)
+            hamsterData.map((hamster) =>(
+                console.log(hamster.id)
+              
+            ))
+            
+            
         }
     }
 
