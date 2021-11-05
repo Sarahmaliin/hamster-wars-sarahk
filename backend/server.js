@@ -13,14 +13,14 @@ app.use((req, res, next) => {
 	next()
 })
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/../build'))
 //routes/endpoints
 
 app.use('/hamsters', hamsterRouter)
 
 // Denna som ger error i heroku?
 app.get('*', (req, res) => {
-	res.sendFile(__dirname + '/build/index.html')
+	res.sendFile(__dirname + '/../build/index.html')
 })
 
 app.listen(PORT, () =>{
