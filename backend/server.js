@@ -18,9 +18,9 @@ app.use(express.static(__dirname + '/../build'))
 
 app.use('/hamsters', hamsterRouter)
 
-// Denna som ger error i heroku?
+
 app.get('*', (req, res) => {
-	res.sendFile(__dirname + '/../build/index.html')
+	res.sendFile(__dirname + '/../build/index.html') 
 })
 
 app.listen(PORT, () =>{
