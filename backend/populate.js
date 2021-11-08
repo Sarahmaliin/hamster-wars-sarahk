@@ -3,7 +3,7 @@ const db = connect()
 
 const HAMSTERS = 'hamsters'
 
-const data = require('./data.json')
+const data = require('../src/data.json')
 console.log(data)
 
 populate()

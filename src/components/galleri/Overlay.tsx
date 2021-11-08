@@ -14,10 +14,14 @@ const Overlay = (data: any) =>{
     return(
         <>
         {close ?  
-            <section  className='.overlay'>
+            <section  className='overlay'>
                 <button onClick={() => CloseOverlay()}>X</button>
             {console.log(hamster.name)}
-            <img src={`../img/${hamster.imgName}`} alt="hamster" />
+            <section className='overlay-info'>
+            <figure className='overlay-figure'>
+                <img src={`../img/${hamster.imgName}`} alt="hamster" />
+            </figure>
+            <article className='overlay-text'>
             <p>Namn: {hamster.name}</p>
             <p>Ålder: {hamster.age}</p>
             <p>Älskar: {hamster.loves}</p>
@@ -25,7 +29,8 @@ const Overlay = (data: any) =>{
             <p>Spel: {hamster.games}</p>
             <p>Vinster: {hamster.wins}</p>
             <p>Förluster: {hamster.defeats}</p>
-        
+            </article>
+            </section>
         </section> : null }</>
         
             )
