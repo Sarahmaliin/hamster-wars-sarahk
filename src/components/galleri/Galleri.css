@@ -5,7 +5,47 @@
 /* Galleri CSS */
 
 .overlay{
-	background: grey;
+	background: #fff;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 5em;
+    padding: 2em;
+}
+
+.overlay > button{
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	max-width: 5%;
+	font-size: 2em;
+	padding: unset;
+}
+
+.overlay-info{
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-figure{
+	height: 50vh;
+}
+
+.overlay-figure > img{
+	height: 18em;
+}
+
+.overlay-text{
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.overlay-text > p{
+	margin: .25em;
 }
 
 
@@ -19,6 +59,7 @@ main{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 	min-width: 90vw;
   }
   
@@ -38,7 +79,7 @@ main{
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 2em;
 	min-width: 90vw;
-	align-items: flex-end;
+	align-items: flex-start;
   }
   
   .infoCard{
@@ -46,7 +87,7 @@ main{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 15em;
+	min-height: 40em;
 	max-width: 17em;
 	border: 1px solid darkgrey;
 	background-color: #ffffff45;
@@ -76,11 +117,12 @@ main{
   }
   
   .buttons{
-	width: 100%;
+	width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+	min-height: 5em;
   }
   
   .buttons > button{
