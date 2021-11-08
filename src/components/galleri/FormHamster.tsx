@@ -22,13 +22,11 @@ const FormHamster = () =>{
     }
     )
 
-    
     const nameInput  = (document.querySelector('.name') as HTMLInputElement)
     const ageInput = (document.querySelector('.age') as HTMLInputElement)
     const favFoodInput = (document.querySelector('.favFood') as HTMLInputElement)
     const lovesInput = (document.querySelector('.loves') as HTMLInputElement)
     const imgNameInput = (document.querySelector('.imgName') as HTMLInputElement)
-
 
     async function saveForm () {
         const res = await fetch('/hamsters', {
@@ -51,12 +49,8 @@ const FormHamster = () =>{
     const ValidateAge = () =>{
         const hamsterValidateAge = ageInput.value.trim()
         let nmb = Number(hamsterValidateAge)
-        if( nmb < 2 || nmb > 100 || isNaN(nmb) || hamsterValidateAge.includes(',') || hamsterValidateAge.includes('.')){
-            console.log('age not ok')
-            //add error
-        }
-        console.log('age ok')
-        return
+        return nmb > 2 && nmb < 100 && !isNaN(nmb) && !hamsterValidateAge.includes(',') && !hamsterValidateAge.includes('.')
+                    
     }
 
     const ValidateFood = () =>{
@@ -71,21 +65,20 @@ const FormHamster = () =>{
 
     const ValidateImg = () =>{
         const hamsterValidateImg = imgNameInput.value.trim() 
-        return hamsterValidateImg.length >= 2 && hamsterValidateImg.includes('-') && hamsterValidateImg.includes('.')
+        return hamsterValidateImg.length >= 2 && hamsterValidateImg.includes('-') && hamsterValidateImg.includes('.') 
     }
 
     const ValidateForm = (event: React.FormEvent<HTMLFormElement>) =>{
 
-        console.log(nameInput)
-        if(ValidateName() && ValidateAge() && ValidateFood() && ValidateLove() ){
-            console.log('okey')
-            
-        }
-        else{
+        const allOkey = ValidateName() && ValidateAge() && ValidateFood() && ValidateLove() && ValidateImg()
+        console.log(allOkey)
+        if(allOkey === false){
             console.log('ohoh false')
         }
-        
-        SaveInput(event)
+        else{
+            console.log('okey')
+            return SaveInput(event)
+        }        
     }
 
     const SaveInput = (event: React.FormEvent<HTMLFormElement>) =>{
@@ -123,38 +116,4 @@ const FormHamster = () =>{
     )
 }
     
-    // const NameIsValid = IsValidName(newHamster.name)
-    // const ageIsValid = isValidAge(age)
-    // const FoodIsValid = IsValidFood(hamsterFood)
-    // const LoveIsValid = IsValidLove(hamsterLove)
-    // const ImgIsValid = IsValidImg(hamsterImg)
-
-    
-
-    // function IsValidName({newHamster.name}: string): boolean{
-    //     return hamsterName.length >= 3
-    // }
-
-    // function isValidAge(age: number): boolean {
-    //     if( isNaN(age) ) return false
-    //     if( age < 0 ) return false
-    //     let ageString = String(age)
-    //     if( ageString.includes(',') || ageString.includes('.') ) return false
-    //     return true
-    // }
-
-    // function IsValidFood(hamsterFood: string): boolean{
-    //     return hamsterFood.length >= 3
-    // }
-
-    // function IsValidLove(hamsterLove: string): boolean{
-    //     return hamsterLove.length >= 3
-    // }
-
-    // function IsValidImg(hamsterImg: string): boolean{
-    //     return hamsterImg.includes('-') && hamsterImg.includes('.') &&hamsterImg.length >= 3
-        
-    // }
-
-    // const formIsValid = NameIsValid && ageIsValid && FoodIsValid && LoveIsValid && ImgIsValid
 export default FormHamster
