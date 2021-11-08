@@ -16,6 +16,11 @@ p, button, h3{
   color: black;
 }
 
+
+img{
+  border-radius: 1em;
+}
+
 .App{
   display: flex;
   flex-direction: column;
@@ -40,17 +45,20 @@ header{
   align-items: flex-end;
 }
 
-h2{
-  font-size: 2em;
-  margin: unset;
-}
-
-a{
+.menuSection > a{
   text-decoration: none;
   font-size: 1.25em; 
   margin: 0 1em;
 }
 
-a:active{
-  color: rgb(65, 65, 65);
+.menuSection > a:hover{
+  text-decoration: underline;
 }
+
+h2{
+  font-size: 2em;
+  margin: unset;
+}
+
+
+
