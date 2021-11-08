@@ -24,11 +24,11 @@ const Startsida = () =>{
                 <p>Du har även möjlighet att ta bort och lägga till dina egna hamstrar i tävlingen. </p>
             </article>
             <aside>
-                <p>1:a platsen just nu: </p>
+                <p>1:a platsen: </p>
             
                 <ul>
                     {leader ? leader.map((lead, index) =>(
-                        <li key={index}>{lead.name} med {lead.wins} vinster</li>
+                        <li key={index}>{lead.name} med {lead.wins} vinst/-er</li>
                     )): null}
                 </ul>
             </aside>

@@ -175,7 +175,8 @@ async function sendRequestTwo(saveD: any){
     return(
         <section className='compete'>
         <section className='hamsterCompete'>
-           <ul >
+            <h1>Rösta på sötaste hamstern</h1>
+            <ul>
             { saveRandomOne && saveRandomTwo ? 
             <>
             <li className="competingHamsters">
@@ -183,14 +184,14 @@ async function sendRequestTwo(saveD: any){
                     <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
                 </figure>
                 <p>{saveRandomOne[name]}</p>
-                <button onClick={() => Vote(saveRandomOne[id])}>Rösta på mig</button> {/* om knapp ej klickad på så räkna ut förlust */}
+                <button className='voteBtn' onClick={() => Vote(saveRandomOne[id])}>Rösta på mig</button> {/* om knapp ej klickad på så räkna ut förlust */}
             </li>
             <li className="competingHamsters" >
             <figure>
                  <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />   
             </figure>
             <p>{saveRandomTwo[name]}</p>
-            <button onClick={() => Vote(saveRandomTwo[id])}>Rösta på mig</button>
+            <button className='voteBtn' onClick={() => Vote(saveRandomTwo[id])}>Rösta på mig</button>
         </li>
         </>
              : null}
