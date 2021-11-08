@@ -21,42 +21,15 @@ const FormHamster = () =>{
         games: 0
     }
     )
-    
-    const NameIsValid = IsValidName(hamsterName)
-    const ageIsValid = isValidAge(age)
-    const FoodIsValid = IsValidFood(hamsterFood)
-    const LoveIsValid = IsValidLove(hamsterLove)
-    const ImgIsValid = IsValidImg(hamsterImg)
-
-    const formIsValid = NameIsValid && ageIsValid && FoodIsValid && LoveIsValid && ImgIsValid
-
-    function IsValidName(hamsterName: string): boolean{
-        return hamsterName.length >= 3
-    }
-
-    function isValidAge(age: number): boolean {
-        if( isNaN(age) ) return false
-        if( age < 0 ) return false
-        let ageString = String(age)
-        if( ageString.includes(',') || ageString.includes('.') ) return false
-        return true
-    }
-
-    function IsValidFood(hamsterFood: string): boolean{
-        return hamsterFood.length >= 3
-    }
-
-    function IsValidLove(hamsterLove: string): boolean{
-        return hamsterLove.length >= 3
-    }
-
-    function IsValidImg(hamsterImg: string): boolean{
-        return hamsterImg.includes('-') || hamsterImg.includes('.') || hamsterImg.length >= 3
-        
-    }
-
 
     
+    const nameInput  = (document.querySelector('.name') as HTMLInputElement)
+    const ageInput = (document.querySelector('.age') as HTMLInputElement)
+    const favFoodInput = (document.querySelector('.favFood') as HTMLInputElement)
+    const lovesInput = (document.querySelector('.loves') as HTMLInputElement)
+    const imgNameInput = (document.querySelector('.imgName') as HTMLInputElement)
+
+
     async function saveForm () {
         const res = await fetch('/hamsters', {
             method: 'POST',
@@ -68,40 +41,78 @@ const FormHamster = () =>{
         let data = await res.json()
         setNewHamster(data)
         console.log(newHamster)
-        
     }
 
-    const SaveInput = (event: any) =>{
-        if(!formIsValid){
-            console.log('form is not valid') //lägger ej till ny hamster, men refreshar sidan, hur ändra?
-            return
-        } 
+    const ValidateName = ()=>{
+        const hamsterValidateName = nameInput.value.trim()
+        return hamsterValidateName.length >= 2 
+    }
+
+    const ValidateAge = () =>{
+        const hamsterValidateAge = ageInput.value.trim()
+        let nmb = Number(hamsterValidateAge)
+        if( nmb < 2 || nmb > 100 || isNaN(nmb) || hamsterValidateAge.includes(',') || hamsterValidateAge.includes('.')){
+            console.log('age not ok')
+            //add error
+        }
+        console.log('age ok')
+        return
+    }
+
+    const ValidateFood = () =>{
+        const hamsterValidateFavFood = favFoodInput.value.trim()
+        return hamsterValidateFavFood.length >= 2 
+    }
+
+    const ValidateLove = () =>{
+        const hamsterValidateLove = lovesInput.value.trim()
+        return hamsterValidateLove.length >= 2 
+    }
+
+    const ValidateImg = () =>{
+        const hamsterValidateImg = imgNameInput.value.trim() 
+        return hamsterValidateImg.length >= 2 && hamsterValidateImg.includes('-') && hamsterValidateImg.includes('.')
+    }
+
+    const ValidateForm = (event: React.FormEvent<HTMLFormElement>) =>{
+
+        console.log(nameInput)
+        if(ValidateName() && ValidateAge() && ValidateFood() && ValidateLove() ){
+            console.log('okey')
+            
+        }
         else{
-            console.log(formIsValid)
-            event.preventDefault()
-            saveForm()
-            window.location.reload()
+            console.log('ohoh false')
         }
         
+        SaveInput(event)
+    }
+
+    const SaveInput = (event: React.FormEvent<HTMLFormElement>) =>{
+        
+        event.preventDefault()
+        saveForm()
+        console.log(true)
+            
     }
 
     const handleChange = (event: any) =>{
-        setNewHamster({...newHamster, [event.target.name]: event.target.value})  
+        setNewHamster({...newHamster, [event.target.name]: event.target.value.trim()})  //trim removes whitespace
     }  
 
     return(
         <>
-        {showForm ? <form onSubmit={SaveInput} className={'form ' + showForm} >
+        {showForm ? <form onSubmit={ValidateForm} className={'form ' + showForm} >
             <article className="addHamster">
                 <h2 onClick={() => setShowForm(!showForm)}>-</h2>
                 </article>
                 <section className='formFields'>
                     <h1 className='headline'>Lägg till en ny hamster</h1>
-                    <input onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
-                    <input onChange={handleChange} name='age' placeholder='Ålder' value={Number(newHamster.age)} type="string" required  />
-                    <input onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='Favoritmat' required />
-                    <input onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
-                    <input onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn (hamster-3.jpg)' required />
+                    <input className='name' onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
+                    <input className='age' onChange={handleChange} name='age' placeholder='Ålder' value={Number(newHamster.age)} type="string" required  />
+                    <input className='favFood' onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='Favoritmat' required />
+                    <input className='loves' onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
+                    <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn (hamster-3.jpg)' required />
                 <button  type="submit">Lägg till</button>
                 </section>
                 
@@ -111,5 +122,39 @@ const FormHamster = () =>{
         </>
     )
 }
+    
+    // const NameIsValid = IsValidName(newHamster.name)
+    // const ageIsValid = isValidAge(age)
+    // const FoodIsValid = IsValidFood(hamsterFood)
+    // const LoveIsValid = IsValidLove(hamsterLove)
+    // const ImgIsValid = IsValidImg(hamsterImg)
 
+    
+
+    // function IsValidName({newHamster.name}: string): boolean{
+    //     return hamsterName.length >= 3
+    // }
+
+    // function isValidAge(age: number): boolean {
+    //     if( isNaN(age) ) return false
+    //     if( age < 0 ) return false
+    //     let ageString = String(age)
+    //     if( ageString.includes(',') || ageString.includes('.') ) return false
+    //     return true
+    // }
+
+    // function IsValidFood(hamsterFood: string): boolean{
+    //     return hamsterFood.length >= 3
+    // }
+
+    // function IsValidLove(hamsterLove: string): boolean{
+    //     return hamsterLove.length >= 3
+    // }
+
+    // function IsValidImg(hamsterImg: string): boolean{
+    //     return hamsterImg.includes('-') && hamsterImg.includes('.') &&hamsterImg.length >= 3
+        
+    // }
+
+    // const formIsValid = NameIsValid && ageIsValid && FoodIsValid && LoveIsValid && ImgIsValid
 export default FormHamster
