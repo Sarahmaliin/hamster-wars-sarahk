@@ -4,51 +4,6 @@
 
 /* Galleri CSS */
 
-.overlay{
-	background: #fff;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 5em;
-    padding: 2em;
-}
-
-.overlay > button{
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	max-width: 5%;
-	font-size: 2em;
-	padding: unset;
-}
-
-.overlay-info{
-	display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.overlay-figure{
-	height: 50vh;
-}
-
-.overlay-figure > img{
-	height: 18em;
-}
-
-.overlay-text{
-	display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: baseline;
-}
-
-.overlay-text > p{
-	margin: .25em;
-}
-
-
 #cardText{
 	max-height: 4em;
     overflow: hidden;
@@ -87,7 +42,7 @@ main{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 40em;
+	min-height: 20em;
 	max-width: 17em;
 	border: 1px solid darkgrey;
 	background-color: #ffffff45;
@@ -194,4 +149,50 @@ main{
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+	}
+
+	/* Overlay */
+
+	.overlay{
+		background: #fff;
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		top: 14em;
+		padding: 2em;
+	}
+	
+	.overlay > button{
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		max-width: 5%;
+		font-size: 2em;
+		padding: unset;
+	}
+	
+	.overlay-info{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.overlay-figure{
+		height: 50vh;
+	}
+	
+	.overlay-figure > img{
+		height: 18em;
+	}
+	
+	.overlay-text{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: baseline;
+	}
+	
+	.overlay-text > p{
+		margin: .25em;
 	}

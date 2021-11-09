@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import './Galleri.css'
 
 const FormHamster = () =>{
@@ -86,7 +86,8 @@ const FormHamster = () =>{
         event.preventDefault()
         saveForm()
         console.log(true)
-            
+        //add new hamster added pop-up + reload page
+        window.location.reload()
     }
 
     const handleChange = (event: any) =>{
