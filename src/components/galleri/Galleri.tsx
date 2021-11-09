@@ -9,6 +9,7 @@ const Galleri = () =>{
     const [ hamsterData, setHamsterData ] = useState<HamsterInfo[] | null>(null)
     const [ show, setShow ] = useState<boolean>(false)
     const [chosenOne, setChosenOne] = useState<HamsterInfo>()
+    const [ blur, setBlur ] = useState('')
 
 
     useEffect(() =>{
@@ -22,7 +23,6 @@ const Galleri = () =>{
             if(filt){
                 
                 setShow(true)
-                // {show ?  < Overlay x={hamster.id}/> : null}
                 setChosenOne(filt)
             } 
         }
@@ -55,13 +55,7 @@ const Galleri = () =>{
                 <img className="infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
             </figure>
             <section id={`a${hamster.id.toString()}`} className='cardText'>
-            <p >{hamster.name}</p>
-            <p >Ålder: {hamster.age}</p>
-            <p >Älskar: {hamster.loves}</p>
-            <p >Favoritmat: {hamster.favFood}</p>
-            <p >Spel: {hamster.games}</p>
-            <p >Vinster: {hamster.wins}</p>
-            <p >Förluster: {hamster.defeats}</p>            
+            <p >{hamster.name}</p>          
             </section> 
             <section className="buttons">
                     <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>

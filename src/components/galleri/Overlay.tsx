@@ -9,13 +9,14 @@ const Overlay = (data: any) =>{
 
     const CloseOverlay = () =>{
         setClose(false)
+        window.location.reload()
     } 
 
     return(
         <>
         {close ?  
             <section  className='overlay'>
-                <button onClick={() => CloseOverlay()}>X</button>
+                <p onClick={() => CloseOverlay()}>X</p>
             {console.log(hamster.name)}
             <section className='overlay-info'>
             <figure className='overlay-figure'>
