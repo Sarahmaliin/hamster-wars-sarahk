@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import './Galleri.css'
+import error from '../../icons/error.svg'
 
 const FormHamster = () =>{
 
@@ -9,6 +10,14 @@ const FormHamster = () =>{
     const [hamsterFood] = useState('')
     const [hamsterLove] = useState('')
     const [hamsterImg] = useState('')
+    const [allOkey, setAllOkey] = useState<boolean>(false) 
+    const [ errorMessage, setErrorMessage ] = useState<string>('')
+    const [ errorName, setErrorName ] = useState<string>('')
+    const [ errorAge, setErrorAge ] = useState<string>('')
+    const [ errorFood, setErrorFood ] = useState<string>('')
+    const [ errorLoves, setErrorLoves ] = useState<string>('')
+    const [ errorImg, setErrorImg ] = useState<string>('')
+
 
     const [newHamster, setNewHamster] = useState({
         name: hamsterName,
@@ -69,14 +78,41 @@ const FormHamster = () =>{
     }
 
     const ValidateForm = (event: React.FormEvent<HTMLFormElement>) =>{
+        event.preventDefault()
 
-        const allOkey = ValidateName() && ValidateAge() && ValidateFood() && ValidateLove() && ValidateImg()
+        if(!ValidateName()) {
+            setErrorName('Nedanstående namn-fält är inkorrekt')
+            nameInput.value.replace('', '')
+        }
+
+        if(!ValidateAge()) {
+            setErrorAge('Nedanstående ålder-fält är inkorrekt')
+        }
+
+        if(!ValidateFood()) {
+            setErrorFood('Nedanstående favoritmat-fält är inkorrekt')
+        }
+
+        if(!ValidateLove()) {
+            setErrorLoves('Nedanstående älskar-fält är inkorrekt')
+        }
+
+        if(!ValidateImg()) {
+            setErrorImg('Nedanstående bild-fält är inkorrekt')
+        }
+
+        setAllOkey(ValidateName() && ValidateAge() && ValidateFood() && ValidateLove() && ValidateImg())
+
         console.log(allOkey)
         if(allOkey === false){
             console.log('ohoh false')
+            const errorText = 'Ett eller flera fält är fel, vänligen se över så du skrivit korrekt'
+            
+            setErrorMessage(errorText)
         }
-        else{
+        if(allOkey === true){
             console.log('okey')
+            alert('okey')
             return SaveInput(event)
         }        
     }
@@ -87,7 +123,7 @@ const FormHamster = () =>{
         saveForm()
         console.log(true)
         //add new hamster added pop-up + reload page
-        window.location.reload()
+        // window.location.reload()
     }
 
     const handleChange = (event: any) =>{
@@ -101,13 +137,20 @@ const FormHamster = () =>{
                 <h2 onClick={() => setShowForm(!showForm)}>-</h2>
                 </article>
                 <section className='formFields'>
-                    <h1 className='headline'>Lägg till en ny hamster</h1>
+                    <h1 className='headline'>Lägg till en ny hamster</h1> 
+                    <h3 className='errorMessages'>{errorMessage}</h3>
+                    <h3 className='errorMessages'>{errorName}</h3>
                     <input className='name' onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
+                    <h3 className='errorMessages'>{errorAge}</h3>
                     <input className='age' onChange={handleChange} name='age' placeholder='Ålder' value={Number(newHamster.age)} type="string" required  />
+                    <h3 className='errorMessages'>{errorFood}</h3>
                     <input className='favFood' onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='Favoritmat' required />
+                    <h3 className='errorMessages'>{errorLoves}</h3>
                     <input className='loves' onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
+                    <h3 className='errorMessages'>{errorImg}</h3>
                     <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn (hamster-3.jpg)' required />
-                    <h3>Välj bilder mellan 1 och 40 enligt exemplet ovan</h3>
+                    <h3 className='errorMessages'>Välj bilder mellan 1 och 40 enligt exemplet ovan</h3>
+                    
                 <button  type="submit">Lägg till</button>
                 </section>
                 
