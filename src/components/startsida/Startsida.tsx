@@ -11,6 +11,7 @@ const Startsida = () =>{
     }, [])
 
     return(
+        <section className='frontPage'>
         <section className='landingSection'>
             <article className='textSection'>
             <h1>Välkommen till Hamster Wars</h1>
@@ -33,7 +34,7 @@ const Startsida = () =>{
                 </ul>
             </aside>
         </section>
-        
+        </section>
     )
 }
 
