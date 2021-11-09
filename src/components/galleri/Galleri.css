@@ -42,7 +42,7 @@ main{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 20em;
+	min-height: 17em;
 	max-width: 17em;
 	border: 1px solid darkgrey;
 	background-color: #ffffff45;
@@ -81,15 +81,16 @@ main{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-	min-height: 5em;
+    align-items: end;
   }
   
   .buttons > button{
+	display: flex;
+	align-items: center;
 	max-height: 2.25em;
 	padding: .25em;
 	background-color: #ffffff45;
-	border: .5px solid #403429;
+	border: none;
 	border-radius: 1em;
 	padding: .5em;
   }
