@@ -18,10 +18,13 @@ const Tävla = () =>{
     const [winnerOne, setWinnerOne] = useState<Number>(0)
     const [winnerTwo, setWinnerTwo] = useState<Number>(0)
     const [loserOne, setLoserOne] = useState<Number>(0)
+    const [ winsOne, setWinsOne ] = useState<Number>(0)
     const [loserTwo, setLoserTwo] = useState<Number>(0)
     const [gameOne, setGameOne] = useState<Number>(0)
     const [gameTwo, setGameTwo] = useState<Number>(0)
     const [visible, setVisible] = useState<boolean>(false)
+    const [winner, setWinner] = useState<HamsterInfo[]>()
+    const [loser, setLoser]  = useState<HamsterInfo[]>()
     
 
     useEffect(() =>{
@@ -46,6 +49,8 @@ const Tävla = () =>{
            })
           setVisible(!visible)
           console.log(voting)
+          setWinner(saveRandomOne)
+          
             }
              // eslint-disable-next-line
     }, [winnerOne])
@@ -62,9 +67,12 @@ const Tävla = () =>{
        })
       setVisible(!visible)
       console.log(voting2)
+      setWinner(saveRandomTwo)
         }
          // eslint-disable-next-line
 }, [winnerTwo])
+
+console.log(winner)
 
 useEffect(() =>{
     const votingLose1 = {defeats: loserOne}
@@ -78,6 +86,7 @@ useEffect(() =>{
    })
   setVisible(!visible)
   console.log(votingLose1)
+  setLoser(saveRandomOne)
     }
      // eslint-disable-next-line
 }, [loserOne])
@@ -94,6 +103,7 @@ useEffect(() =>{
    })
   setVisible(!visible)
   console.log(votingLose2)
+  setLoser(saveRandomTwo)
     }
      // eslint-disable-next-line
 }, [loserTwo])
@@ -143,6 +153,7 @@ useEffect(() =>{
                 setGameOne(updateGame1)
                 const updateGame2 = Number(saveRandomTwo[games]) + 1
                 setGameTwo(updateGame2)
+                console.log(saveRandomOne)                
                 }
             if(HamsterId === saveRandomTwo[id]){
                 console.log('winner two')
@@ -159,6 +170,7 @@ useEffect(() =>{
         }
             
     }
+
 async function sendRequestOne(saveData: any){
     const response = await fetch ('/hamsters/random')
     const data = await response.json()
@@ -172,6 +184,8 @@ async function sendRequestTwo(saveD: any){
     saveD(data)
     console.log(data)
 }
+console.log(saveRandomOne)
+console.log(saveRandomTwo)
     return(
         <section className='compete'>
         <section className='hamsterCompete'>
@@ -199,28 +213,55 @@ async function sendRequestTwo(saveD: any){
         </section>
         <section className={'overlay ' + visible}>
             
-            { saveRandomOne && saveRandomTwo ?
+            { saveRandomOne && saveRandomTwo && winner && loser ?
             <ul className='results'>
             <li className='results-hamster'>
                 <h1>Vinnare: </h1>
                 <figure className='results-image'>
-                    <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
+                    <img src={`../../img/${winner[imgName]}`} alt="hamster" />
                 </figure>
-                <p className='overlay-text'>Namn: {saveRandomOne[name]}</p> 
-                <p className='overlay-text'>Vinster: {winnerOne}</p>
-                <p className='overlay-text'>Förluster: {loserOne}</p>
-                <p className='overlay-text'>Matcher: {gameOne}</p>
-
+                
+                <article className='winLoseText'>
+                    {winner[id] === saveRandomOne[id] ? 
+                    <section>
+                    <p className='overlay-text'>Namn: {winner[name]}</p> 
+                    <p className='overlay-text'>Vinster: {winnerOne}</p>
+                    <p className='overlay-text'>Förluster: {winner[defeats]}</p>
+                    <p className='overlay-text'>Matcher: {gameOne}</p>
+                </section> :
+                
+                <section>
+                    <p className='overlay-text'>Namn: {winner[name]}</p> 
+                    <p className='overlay-text'>Vinster: {winnerTwo}</p>
+                    <p className='overlay-text'>Förluster: {winner[defeats]}</p>
+                    <p className='overlay-text'>Matcher: {gameTwo}</p>
+                </section>
+                
+                }</article>
+               
+                
             </li>
             <li className='results-hamster'>
             <h1>Förlorare</h1>
             <figure className='results-image'>
-                <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />
+                <img src={`../../img/${loser[imgName]}`} alt="hamster" />
             </figure>
-            <p className='overlay-text'>Namn: {saveRandomTwo[name]}</p> 
-            <p className='overlay-text'>Vinster: {winnerTwo}</p>
-            <p className='overlay-text'>Förluster: {loserTwo}</p>
-            <p className='overlay-text'>Matcher: {gameTwo}</p>
+            {winner[id] === saveRandomOne[id] ? 
+            <article className='winLoseText'>
+               <p className='overlay-text'>Namn: {loser[name]}</p> 
+                <p className='overlay-text'>Vinster: {loser[wins]}</p>
+                <p className='overlay-text'>Förluster: {loserTwo}</p>
+                <p className='overlay-text'>Matcher: {gameTwo}</p>
+            </article>
+
+            :
+            <article className='winLoseText'>
+                <p className='overlay-text'>Namn: {loser[name]}</p> 
+                <p className='overlay-text'>Vinster: {loser[wins]}</p>
+                <p className='overlay-text'>Förluster: {loserOne}</p>
+                <p className='overlay-text'>Matcher: {gameOne}</p>
+            </article>
+}
 
         </li>
             <section className='restartBtn'>

@@ -26,7 +26,7 @@ const Overlay = (data: any) =>{
             <p>Namn: {hamster.name}</p>
             <p>Ålder: {hamster.age}</p>
             <p>Älskar: {hamster.loves}</p>
-            <p>Favoritmat: {hamster.faveFood}</p>
+            <p>Favoritmat: {hamster.favFood}</p>
             <p>Spel: {hamster.games}</p>
             <p>Vinster: {hamster.wins}</p>
             <p>Förluster: {hamster.defeats}</p>
