@@ -9,7 +9,6 @@ const Galleri = () =>{
     const [ hamsterData, setHamsterData ] = useState<HamsterInfo[] | null>(null)
     const [ show, setShow ] = useState<boolean>(false)
     const [chosenOne, setChosenOne] = useState<HamsterInfo>()
-    const [ blur, setBlur ] = useState('')
 
 
     useEffect(() =>{
@@ -61,7 +60,6 @@ const Galleri = () =>{
                     <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
                    <button onClick={() => ReadMore(hamster.id)}> läs mer</button>
                 </section>
-             
         </li>
         </>
         ))
