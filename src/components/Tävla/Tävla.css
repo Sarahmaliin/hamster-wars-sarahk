@@ -19,6 +19,7 @@ h1{
     column-count: 2;
     column-gap: 1em;
     column-rule: 1px solid black;
+    margin-left: 1em;
 }
 
 .overlay-text{
@@ -34,7 +35,7 @@ h1{
 button{
     font-size: 1em;
     padding: 1em;
-    border: 1px solid #403429;
+    border: none;
     border-radius: 1em;
     transition: .4s;
 }
@@ -129,7 +130,7 @@ ul{
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    
+    min-height: 30em;
 }
 
 .results-hamster{
@@ -145,6 +146,7 @@ ul{
 
 .results-hamster > figure > img{
     max-width: 85%;
+    max-height: 12em;
 }
 
 
