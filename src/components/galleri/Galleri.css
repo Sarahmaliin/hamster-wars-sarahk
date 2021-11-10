@@ -183,68 +183,7 @@ main{
 	}
 
 	/* Overlay */
-
-	.overlay{
-		background: #dec9b8;
-		display: flex;
-		flex-direction: column;
-		position: fixed;
-		top: 14em;
-		padding: 2em;
-		border-radius: 1em;
-		border: 1px solid #3c3c3c;
-		box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 
-    	0 2px 2px rgb(0 0 0 / 12%), 
-    	0 4px 4px rgb(0 0 0 / 12%), 
-    	0 8px 8px rgb(0 0 0 / 12%), 
-    	0 16px 16px rgb(0 0 0 / 12%);
-	}
-
-	.overlay > p {
-		margin: 0 0 1em;
-    	text-align: end;
-    	font-size: 1.75em;
-	}
 	
-	.overlay > button{
-		display: flex;
-		justify-content: center;
-		align-items: flex-end;
-		max-width: 5%;
-		font-size: 2em;
-		padding: unset;
-	}
-	
-	.overlay-info{
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		max-height: 19em;
-	}
-	
-	.overlay-figure{
-		height: 50vh;
-	}
-	
-	.overlay-figure > img{
-		height: 18em;
-	}
-	
-	.overlay-text{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: baseline;
-	}
-	
-	.overlay-text > p{
-		margin: .25em;
-	}
-	
-
-	Animation
-	  
 	  .image {
 		opacity: 1;
 		display: block;
