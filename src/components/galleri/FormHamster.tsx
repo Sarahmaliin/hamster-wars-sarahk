@@ -1,4 +1,3 @@
-import { error } from "console"
 import { useEffect, useState } from "react"
 import './Galleri.css'
 
@@ -11,13 +10,11 @@ const FormHamster = () =>{
     const [hamsterLove] = useState('')
     const [hamsterImg] = useState('')
     const [allOkey, setAllOkey] = useState<boolean>(false) 
-    const [ errorMessage, setErrorMessage ] = useState<string>('')
     const [ errorName, setErrorName ] = useState<string>('')
     const [ errorAge, setErrorAge ] = useState<string>('')
     const [ errorFood, setErrorFood ] = useState<string>('')
     const [ errorLoves, setErrorLoves ] = useState<string>('')
     const [ errorImg, setErrorImg ] = useState<string>('')
-    const [trueOrFalse, setTrueOrFalse ] = useState<boolean>()
 
 
     const [newHamster, setNewHamster] = useState({
@@ -37,7 +34,6 @@ const FormHamster = () =>{
     const favFoodInput = (document.querySelector('.favFood') as HTMLInputElement)
     const lovesInput = (document.querySelector('.loves') as HTMLInputElement)
     const imgNameInput = (document.querySelector('.imgName') as HTMLInputElement)
-    let imageExists = require('image-exists')
 
     useEffect(() =>{
         console.log('fetched')
@@ -152,8 +148,7 @@ const FormHamster = () =>{
                 <h2 onClick={() => setShowForm(!showForm)}>-</h2>
                 </article>
                 <section className='formFields'>
-                    <h1 className='headline'>Lägg till en ny hamster</h1> 
-                    <h3 className='errorMessages'>{errorMessage}</h3>
+                    <h1 className='headline'>Lägg till en ny hamster</h1>
                     <h3 className='errorMessages'>{errorName}</h3>
                     <input className='name' onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
                     <h3 className='errorMessages'>{errorAge}</h3>
