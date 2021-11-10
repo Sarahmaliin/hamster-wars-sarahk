@@ -9,12 +9,14 @@ function App() {
   return (
     <div className="App">
         <header>
+          <section className='header-text'>
           <h2>Hamster Wars</h2>
           <nav className="menuSection">
             <Link to='/'>Startsida</Link>
             <Link to='/Tävla'>Tävla</Link>
             <Link to='/Galleri'>Galleri</Link>
           </nav>
+          </section>
         </header>
         <main>
           <Switch>

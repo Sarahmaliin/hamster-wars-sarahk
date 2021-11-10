@@ -2,31 +2,15 @@ import { useEffect, useState } from 'react'
 import { HamsterInfo } from '../../models/HamsterInfo'
 import FormHamster from './FormHamster'
 import './Galleri.css'
-import Overlay from './Overlay'
 
 const Galleri = () =>{
 
     const [ hamsterData, setHamsterData ] = useState<HamsterInfo[] | null>(null)
-    const [ show, setShow ] = useState<boolean>(false)
-    const [chosenOne, setChosenOne] = useState<HamsterInfo>()
 
 
     useEffect(() =>{
         sendRequest(setHamsterData)
     }, [])
-
-    const ReadMore = (id: string) =>{
-        if (hamsterData){
-            const filt = hamsterData.find(h => h.id === id)
-            console.log(filt)
-            if(filt){
-                
-                setShow(true)
-                setChosenOne(filt)
-            } 
-        }
-    }
-
 
     const deleteMethod = {
         method: 'DELETE',
@@ -47,29 +31,38 @@ const Galleri = () =>{
         < FormHamster />
         <ul className="grid">
         {hamsterData ? hamsterData.map((hamster, index) =>(   
-        <>
         
-        <li className="infoCard" key={index}>
-            <figure>
-                <img className="infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
-            </figure>
-            <section id={`a${hamster.id.toString()}`} className='cardText'>
-            <p >{hamster.name}</p>          
-            </section> 
+        <li className="card infoCard" key={index}>
             <section className="buttons">
-                    <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
-                   <button onClick={() => ReadMore(hamster.id)}> läs mer</button>
-                </section>
+                        <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
+            </section>
+            <figure>
+                <img className="card-image infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
+                <p className='card-title'>{hamster.name}</p> 
+            </figure>
+            <section className='card-overlay'>
+                <section className='card-header'>
+                    <section id={`a${hamster.id.toString()}`} className='card-text'>
+                    </section>        
+                </section> 
+                <section className='card-description'>
+                    <p >Ålder: {hamster.age}</p>
+                    <p >Älskar: {hamster.loves}</p> 
+                    <p >Favoritmat: {hamster.favFood}</p>
+                    <p >Spelade spel: {hamster.games}</p>
+                    <p >Vinster: {hamster.wins}</p>
+                    <p >Förluster: {hamster.defeats}</p>       
+                </section>  
+            </section>
+                
         </li>
-        </>
+        
         ))
         :
         'Loading data'
         }
         
     </ul>
-    {show ?  < Overlay data={hamsterData} x={chosenOne}/> : null}
-     
     </>
     )
 }

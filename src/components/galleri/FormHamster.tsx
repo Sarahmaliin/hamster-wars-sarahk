@@ -1,6 +1,5 @@
 import { useState } from "react"
 import './Galleri.css'
-import error from '../../icons/error.svg'
 
 const FormHamster = () =>{
 
