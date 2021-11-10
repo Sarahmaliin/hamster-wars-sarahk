@@ -41,10 +41,6 @@ const Galleri = () =>{
                 <p className='card-title'>{hamster.name}</p> 
             </figure>
             <section className='card-overlay'>
-                {/* <section className='card-header'>
-                    <section id={`a${hamster.id.toString()}`} className='card-text'>
-                    </section>        
-                </section>  */}
                 <section className='card-description'>
                     <p >Ålder: {hamster.age}</p>
                     <p >Älskar: {hamster.loves}</p> 
