@@ -33,29 +33,29 @@ main{
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 2em;
-	min-width: 90%;
+	min-width: 97%;
     max-width: 90%;
 	align-items: flex-start;
   }
   
   .infoCard{
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	min-height: 18em;
-	max-width: 17em;
-	border: 1px solid darkgrey;
-	background-color: #ffffff45;
-	border-radius: 1em;
-	padding: 1em 0 .5em;
-	transition: all .2s;
-	box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 
-    0 2px 2px rgb(0 0 0 / 12%), 
-    0 4px 4px rgb(0 0 0 / 12%), 
-    0 8px 8px rgb(0 0 0 / 12%), 
-    0 16px 16px rgb(0 0 0 / 12%);
-	overflow: hidden;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: end;
+    align-items: center;
+    min-height: 16em;
+    max-width: 17em;
+    background-color: #ffffff45;
+    border-radius: 1em;
+    padding: 1em 0 1em;
+    transition: all .2s;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 
+	0 2px 2px rgb(0 0 0 / 12%), 
+	0 4px 4px rgb(0 0 0 / 12%), 
+	0 8px 8px rgb(0 0 0 / 12%), 
+	0 16px 16px rgb(0 0 0 / 12%);
+    overflow: hidden;
   }
 
   .infoCard:hover{
@@ -72,7 +72,7 @@ main{
 
   
   .infoCardImg{
-	max-width: 80%;
+	max-width: 90%;
     max-height: 100%;
 	border-radius: 1em;
   }
@@ -241,21 +241,20 @@ main{
 	  .card-overlay {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: start;
 		align-items: center;
 		position: absolute;
-		bottom: 0;
-		left: 0;
+		bottom: 4.95em;
+		left: .85em;
 		right: 0;
 		z-index: 1;
 		border-radius: 1em;
 		background-color: #ffffff78;
-		padding: 0 0 0.75em;
-		transform: translateY(118%);
-		transition: .2s ease-in-out;
-		height: 42%;
-		width: 100%;
-	  }
+		transform: translateX(118%);
+		transition: 1s ease-in-out;
+		height: 67%;
+		width: 90%;
+	}
 	  
 	  .card:hover .card-overlay {
 		transform: translateY(0);
@@ -284,9 +283,9 @@ main{
 		margin: 0 0 .3em;
 		color: #6A515E;
 		position: absolute;
-		background-color: #ffffffa1;
+		background-color: #ffffff8f;
 		top: 9.6em;
-		width: 74%;
+		width: 84.1%;
 		display: block;
 		justify-content: end;
 		padding: 0.5em;
@@ -299,15 +298,14 @@ main{
 	  
 	  
 	.card-description {
-    color: #D7BDCA;
+    color: #d0b59e8c;
     overflow: hidden;
     column-count: 2;
     grid-column-gap: 0.5em;
     column-gap: 0.5em;
     column-rule: 1px solid black;
-    margin-left: .6em;
 	line-height: 1em;
-    margin-top: 1.5em;
+    margin-top: 2.5em;
     max-width: 85%;
 	}    
 
