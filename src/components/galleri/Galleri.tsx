@@ -24,6 +24,7 @@ const Galleri = () =>{
         await fetch(`/hamsters/${id}`, deleteMethod)
         window.location.reload();
     }
+    
 
 
     return(
@@ -31,10 +32,13 @@ const Galleri = () =>{
         < FormHamster />
         <ul className="grid">
         {hamsterData ? hamsterData.map((hamster, index) =>(   
+            
         <section key={index}>
         <li className="infoCard" >
                 <figure>
-                    <img className="card-image infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
+                    {!hamster.imgName.includes('.jpg') ? 
+                    <img className="card-image infoCardImg" src={hamster.imgName} alt="hamster profile" /> :
+                    <img className="card-image infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />}
                     <p className='card-title'>{hamster.name}</p> 
                 </figure>
                 <section className='middle'>
