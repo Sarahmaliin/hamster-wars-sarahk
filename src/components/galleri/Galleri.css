@@ -41,20 +41,21 @@ main{
   .infoCard{
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	min-height: 18em;
 	max-width: 17em;
 	border: 1px solid darkgrey;
 	background-color: #ffffff45;
 	border-radius: 1em;
-	padding: 1em 0 2em;
+	padding: 1em 0 .5em;
 	transition: all .2s;
 	box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 
     0 2px 2px rgb(0 0 0 / 12%), 
     0 4px 4px rgb(0 0 0 / 12%), 
     0 8px 8px rgb(0 0 0 / 12%), 
     0 16px 16px rgb(0 0 0 / 12%);
+	overflow: hidden;
   }
 
   .infoCard:hover{
@@ -63,26 +64,12 @@ main{
   
   .infoCard > figure{
 	position: relative;
-	max-height: 10em;
+	max-height: 12em;
 	min-height: 9em;
 	min-width: 8em;
 	margin-block: unset;
   }
 
-  .infoCard > figure > p{
-	position: absolute;
-    background-color: #ffffffa1;
-    top: 7.6em;
-    width: 74%;
-    display: block;
-    justify-content: end;
-    padding: 0.5em;
-    border-radius: 1em;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-    color: black;
-    font-weight: 800;
-  }
   
   .infoCardImg{
 	max-width: 80%;
@@ -99,12 +86,12 @@ main{
   }
   
   .buttons{
+	min-height: 4em;
 	width: 90%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: end;
-	margin-bottom: .5em;
   }
   
   .buttons > button{
@@ -120,8 +107,8 @@ main{
   
   .trashcan{
 	background: no-repeat url(../../icons/trashcan1.svg);
-	width: 2em;
-	height: 3em;
+	min-width: 2em;
+	min-height: 3em;
   }
 
   .trashcan:hover{
@@ -251,14 +238,6 @@ main{
 
 	/* Animation */
 	  
-	  .card {
-		position: relative;
-		display: block; 
-		border-radius: 1em;
-		overflow: hidden;
-		text-decoration: none;
-	  }
-	  
 	  .card-overlay {
 		display: flex;
 		flex-direction: column;
@@ -274,7 +253,7 @@ main{
 		padding: 0 0 0.75em;
 		transform: translateY(118%);
 		transition: .2s ease-in-out;
-		height: 39%;
+		height: 42%;
 		width: 100%;
 	  }
 	  
@@ -304,6 +283,18 @@ main{
 		font-size: 1em;
 		margin: 0 0 .3em;
 		color: #6A515E;
+		position: absolute;
+		background-color: #ffffffa1;
+		top: 9.6em;
+		width: 74%;
+		display: block;
+		justify-content: end;
+		padding: 0.5em;
+		border-radius: 1em;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		color: black;
+		font-weight: 800;
 	  }
 	  
 	  
@@ -314,7 +305,10 @@ main{
     grid-column-gap: 0.5em;
     column-gap: 0.5em;
     column-rule: 1px solid black;
-    margin-left: 1em;
+    margin-left: .6em;
+	line-height: 1em;
+    margin-top: 1.5em;
+    max-width: 85%;
 	}    
 
 	.card-description > p{
