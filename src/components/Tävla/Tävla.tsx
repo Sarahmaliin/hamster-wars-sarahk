@@ -195,14 +195,18 @@ console.log(saveRandomTwo)
             <>
             <li className="competingHamsters">
                 <figure>
-                    <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />
+                {!saveRandomOne[imgName].toString().includes('.jpg') ? 
+                    <img className="card-image infoCardImg" src={saveRandomOne[imgName].toString()} alt="hamster profile" /> :
+                    <img className="card-image infoCardImg" src={`../img/${saveRandomOne[imgName].toString()}`} alt="hamster profile" />}
                 </figure>
                 <p>{saveRandomOne[name]}</p>
                 <button className='voteBtn' onClick={() => Vote(saveRandomOne[id])}>Rösta på mig</button> {/* om knapp ej klickad på så räkna ut förlust */}
             </li>
             <li className="competingHamsters" >
             <figure>
-                 <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />   
+            {!saveRandomTwo[imgName].toString().includes('.jpg') ? 
+                    <img className="card-image infoCardImg" src={saveRandomTwo[imgName].toString()} alt="hamster profile" /> :
+                    <img className="card-image infoCardImg" src={`../img/${saveRandomTwo[imgName].toString()}`} alt="hamster profile" />}  
             </figure>
             <p>{saveRandomTwo[name]}</p>
             <button className='voteBtn' onClick={() => Vote(saveRandomTwo[id])}>Rösta på mig</button>
@@ -218,7 +222,10 @@ console.log(saveRandomTwo)
             <li className='results-hamster'>
                 <h1>Vinnare: </h1>
                 <figure className='results-image'>
-                    <img src={`../../img/${winner[imgName]}`} alt="hamster" />
+                    {!winner[imgName].toString().includes('.jpg') ? 
+                    <img src={`${winner[imgName]}`} alt="hamster" />
+                    : <img src={`../../img/${winner[imgName]}`} alt="hamster" />}
+                    
                 </figure>
                 
                 <article className='winLoseText'>
@@ -244,7 +251,10 @@ console.log(saveRandomTwo)
             <li className='results-hamster'>
             <h1>Förlorare</h1>
             <figure className='results-image'>
-                <img src={`../../img/${loser[imgName]}`} alt="hamster" />
+                {!loser[imgName].toString().includes('.jpg') ? 
+                    <img src={`${loser[imgName]}`} alt="hamster" />
+                    : <img src={`../../img/${loser[imgName]}`} alt="hamster" />}
+
             </figure>
             {winner[id] === saveRandomOne[id] ? 
             <article className='winLoseText'>
