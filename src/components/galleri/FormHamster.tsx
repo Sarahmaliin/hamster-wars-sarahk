@@ -159,7 +159,6 @@ const FormHamster = () =>{
                     <input className='loves' onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
                     <h3 className='errorMessages'>{errorImg}</h3>
                     <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn (hamster-3.jpg)' required />
-                    <h3 >Välj bilder mellan 1 och 40 enligt exemplet ovan</h3>
                     
                 <button  type="submit">Lägg till</button>
                 </section>
