@@ -2,6 +2,7 @@ import './Tävla.css'
 import { useEffect, useState } from "react"
 import { HamsterInfo } from "../../models/HamsterInfo"
 
+
     const name: any = 'name'
     const imgName: any = 'imgName'
     const id: any = 'id'
@@ -18,7 +19,6 @@ const Tävla = () =>{
     const [winnerOne, setWinnerOne] = useState<Number>(0)
     const [winnerTwo, setWinnerTwo] = useState<Number>(0)
     const [loserOne, setLoserOne] = useState<Number>(0)
-    const [ winsOne, setWinsOne ] = useState<Number>(0)
     const [loserTwo, setLoserTwo] = useState<Number>(0)
     const [gameOne, setGameOne] = useState<Number>(0)
     const [gameTwo, setGameTwo] = useState<Number>(0)

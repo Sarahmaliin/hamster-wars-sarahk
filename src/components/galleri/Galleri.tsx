@@ -31,8 +31,8 @@ const Galleri = () =>{
         < FormHamster />
         <ul className="grid">
         {hamsterData ? hamsterData.map((hamster, index) =>(   
-        <section>
-        <li className="infoCard" key={index}>
+        <section key={index}>
+        <li className="infoCard" >
                 <figure>
                     <img className="card-image infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
                     <p className='card-title'>{hamster.name}</p> 

@@ -42,7 +42,7 @@ main{
 	display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     min-height: 16em;
     max-width: 17em;
@@ -98,7 +98,7 @@ main{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: end;
+    align-items: flex-end;
   }
   
   .buttons > button{
@@ -182,16 +182,11 @@ main{
 		align-items: center;
 	}
 
+	.errorMessages{
+			color: #bf1111;
+		}
+
 	/* Overlay */
-	
-	  .image {
-		opacity: 1;
-		display: block;
-		width: 100%;
-		height: auto;
-		transition: .5s ease;
-		backface-visibility: hidden;
-	  }
 	  
 	  .middle {
 		display: flex;
@@ -231,4 +226,6 @@ main{
 		  margin: 0 .25em;
 		  line-height: 1.5;
 	  }
+	  
+
 	  
