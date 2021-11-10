@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { error } from "console"
+import { useEffect, useState } from "react"
 import './Galleri.css'
 
 const FormHamster = () =>{
@@ -16,6 +17,7 @@ const FormHamster = () =>{
     const [ errorFood, setErrorFood ] = useState<string>('')
     const [ errorLoves, setErrorLoves ] = useState<string>('')
     const [ errorImg, setErrorImg ] = useState<string>('')
+    const [trueOrFalse, setTrueOrFalse ] = useState<boolean>()
 
 
     const [newHamster, setNewHamster] = useState({
@@ -35,6 +37,20 @@ const FormHamster = () =>{
     const favFoodInput = (document.querySelector('.favFood') as HTMLInputElement)
     const lovesInput = (document.querySelector('.loves') as HTMLInputElement)
     const imgNameInput = (document.querySelector('.imgName') as HTMLInputElement)
+    let imageExists = require('image-exists')
+
+    useEffect(() =>{
+        console.log('fetched')
+        if(allOkey === true){
+            console.log('okey')
+            alert('okey')
+        }  
+         if(allOkey === false){
+            console.log('ohoh false')
+        } 
+        // eslint-disable-next-line
+    }, [allOkey])
+
 
     async function saveForm () {
         const res = await fetch('/hamsters', {
@@ -71,21 +87,37 @@ const FormHamster = () =>{
         return hamsterValidateLove.length >= 2 
     }
 
+ 
+
+    
+
     const ValidateImg = () =>{
+
+//         async function DoesFileExist(){ GER ERROR 403, VRF??
+//         try{
+//             let response = await fetch(`../img/${imgNameInput.value.trim()}`, { method: 'HEAD' })
+//             return await response.json()
+//     }
+//     catch(error){
+//         console.log(error)
+//     };
+//     }
+// DoesFileExist()
         const hamsterValidateImg = imgNameInput.value.trim() 
         return hamsterValidateImg.length >= 2 && hamsterValidateImg.includes('-') && hamsterValidateImg.includes('.') 
     }
 
-    const ValidateForm = (event: React.FormEvent<HTMLFormElement>) =>{
+    const SaveInput = (event: React.FormEvent<HTMLFormElement>) =>{
+        
         event.preventDefault()
-
         if(!ValidateName()) {
             setErrorName('Nedanstående namn-fält är inkorrekt')
+            console.log('namn korrigeras')
             nameInput.value.replace('', '')
         }
 
         if(!ValidateAge()) {
-            setErrorAge('Nedanstående ålder-fält är inkorrekt')
+            setErrorAge('Nedanstående ålder-fält är inkorrekt.')
         }
 
         if(!ValidateFood()) {
@@ -103,22 +135,6 @@ const FormHamster = () =>{
         setAllOkey(ValidateName() && ValidateAge() && ValidateFood() && ValidateLove() && ValidateImg())
 
         console.log(allOkey)
-        if(allOkey === false){
-            console.log('ohoh false')
-            const errorText = 'Ett eller flera fält är fel, vänligen se över så du skrivit korrekt'
-            
-            setErrorMessage(errorText)
-        }
-        if(allOkey === true){
-            console.log('okey')
-            alert('okey')
-            return SaveInput(event)
-        }        
-    }
-
-    const SaveInput = (event: React.FormEvent<HTMLFormElement>) =>{
-        
-        event.preventDefault()
         saveForm()
         console.log(true)
         //add new hamster added pop-up + reload page
@@ -131,7 +147,7 @@ const FormHamster = () =>{
 
     return(
         <>
-        {showForm ? <form onSubmit={ValidateForm} className={'form ' + showForm} >
+        {showForm ? <form onSubmit={SaveInput} className={'form ' + showForm} >
             <article className="addHamster">
                 <h2 onClick={() => setShowForm(!showForm)}>-</h2>
                 </article>
@@ -148,7 +164,7 @@ const FormHamster = () =>{
                     <input className='loves' onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
                     <h3 className='errorMessages'>{errorImg}</h3>
                     <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn (hamster-3.jpg)' required />
-                    <h3 className='errorMessages'>Välj bilder mellan 1 och 40 enligt exemplet ovan</h3>
+                    <h3 >Välj bilder mellan 1 och 40 enligt exemplet ovan</h3>
                     
                 <button  type="submit">Lägg till</button>
                 </section>
