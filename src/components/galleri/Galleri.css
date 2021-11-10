@@ -43,12 +43,12 @@ main{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 17em;
+	min-height: 18em;
 	max-width: 17em;
 	border: 1px solid darkgrey;
 	background-color: #ffffff45;
 	border-radius: 1em;
-	padding: 2em 0;
+	padding: 1em 0 2em;
 	transition: all .2s;
 	box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 
     0 2px 2px rgb(0 0 0 / 12%), 
@@ -62,10 +62,26 @@ main{
   }
   
   .infoCard > figure{
+	position: relative;
 	max-height: 10em;
 	min-height: 9em;
 	min-width: 8em;
 	margin-block: unset;
+  }
+
+  .infoCard > figure > p{
+	position: absolute;
+    background-color: #ffffffa1;
+    top: 7.6em;
+    width: 74%;
+    display: block;
+    justify-content: end;
+    padding: 0.5em;
+    border-radius: 1em;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+    color: black;
+    font-weight: 800;
   }
   
   .infoCardImg{
@@ -83,11 +99,12 @@ main{
   }
   
   .buttons{
-	width: 80%;
+	width: 90%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: end;
+	margin-bottom: .5em;
   }
   
   .buttons > button{
@@ -237,26 +254,28 @@ main{
 	  .card {
 		position: relative;
 		display: block; 
-		border-radius: calc(var(--curve) * 1px);
+		border-radius: 1em;
 		overflow: hidden;
 		text-decoration: none;
 	  }
 	  
-	  .card-image {      
-		width: 100%;
-		height: auto;
-	  }
-	  
 	  .card-overlay {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		z-index: 1;      
-		border-radius: calc(var(--curve) * 1px);    
-		background-color: var(--surface-color);      
-		transform: translateY(100%);
+		z-index: 1;
+		border-radius: 1em;
+		background-color: #ffffff78;
+		padding: 0 0 0.75em;
+		transform: translateY(118%);
 		transition: .2s ease-in-out;
+		height: 39%;
+		width: 100%;
 	  }
 	  
 	  .card:hover .card-overlay {
@@ -299,7 +318,7 @@ main{
 	}    
 
 	.card-description > p{
-		font-size: .75em;
+	font-size: .75em;
     font-weight: 600;
     margin: 0 0.75em;
 	}

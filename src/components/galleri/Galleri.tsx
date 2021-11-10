@@ -34,17 +34,13 @@ const Galleri = () =>{
         
         <li className="card infoCard" key={index}>
             <section className="buttons">
-                        <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
+                <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
             </section>
             <figure>
                 <img className="card-image infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
                 <p className='card-title'>{hamster.name}</p> 
             </figure>
             <section className='card-overlay'>
-                <section className='card-header'>
-                    <section id={`a${hamster.id.toString()}`} className='card-text'>
-                    </section>        
-                </section> 
                 <section className='card-description'>
                     <p >Ålder: {hamster.age}</p>
                     <p >Älskar: {hamster.loves}</p> 
