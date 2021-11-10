@@ -33,7 +33,7 @@ const Galleri = () =>{
         {hamsterData ? hamsterData.map((hamster, index) =>(   
         
         <li className="card infoCard" key={index}>
-            
+           
             <figure>
                 <img className="card-image infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />
                 <p className='card-title'>{hamster.name}</p> 
@@ -41,14 +41,14 @@ const Galleri = () =>{
             <section className='card-overlay'>
                 <section className='card-description'>
                     <p >Ålder: {hamster.age}</p>
-                    <p >Älskar: {hamster.loves}</p> 
+                    <p >Älskar att: {hamster.loves}</p> 
                     <p >Favoritmat: {hamster.favFood}</p>
                     <p >Spelade spel: {hamster.games}</p>
                     <p >Vinster: {hamster.wins}</p>
                     <p >Förluster: {hamster.defeats}</p>       
                 </section>  
             </section>
-                <section className="buttons">
+            <section className="buttons">
                 <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
             </section>
         </li>
