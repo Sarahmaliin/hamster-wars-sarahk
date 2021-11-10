@@ -58,11 +58,18 @@ main{
     overflow: hidden;
   }
 
-  .infoCard:hover{
+  .infoCard:hover, .hide{
 	  transform: scale(1.1);
+	  display: block;
+  }
+
+  .hide{
+	  display: none;
   }
   
   .infoCard > figure{
+	display: flex;
+    flex-wrap: wrap;
 	position: relative;
 	max-height: 12em;
 	min-height: 9em;
@@ -236,82 +243,53 @@ main{
 	}
 	
 
-	/* Animation */
+	Animation
 	  
-	  .card-overlay {
+	  .image {
+		opacity: 1;
+		display: block;
+		width: 100%;
+		height: auto;
+		transition: .5s ease;
+		backface-visibility: hidden;
+	  }
+	  
+	  .middle {
 		display: flex;
 		flex-direction: column;
-		justify-content: start;
+		justify-content: center;
 		align-items: center;
-		position: absolute;
-		bottom: 4.95em;
-		left: .85em;
-		right: 0;
-		z-index: 1;
+		text-align: left;
+		min-height: 12em;
+		min-width: 89.75%;
 		border-radius: 1em;
-		background-color: #ffffff78;
-		transform: translateX(118%);
-		transition: 1s ease-in-out;
-		height: 67%;
-		width: 90%;
-	}
-	  
-	  .card:hover .card-overlay {
-		transform: translateY(0);
-	  }
-	  
-	  .card-header {
-		position: relative;
-		display: flex;
-		align-items: center;
-		gap: 2em;
-		padding: 0 2em;
-		border-radius: calc(var(--curve) * 1px) 0 0 0;    
-		background-color: var(--surface-color);
-		transform: translateY(-100%);
-		transition: .2s ease-in-out;
-	  }
-	     
-	  
-	  .card:hover .card-header {
-		transform: translateY(0);
-	  }
-	  
-	  
-	  .card-title {
-		font-size: 1em;
-		margin: 0 0 .3em;
-		color: #6A515E;
+		background: #ffffff7d;
+		transition: .5s ease;
+		opacity: 0;
 		position: absolute;
-		background-color: #ffffff8f;
-		top: 9.6em;
-		width: 84.1%;
-		display: block;
-		justify-content: end;
-		padding: 0.5em;
-		border-radius: 1em;
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-		color: black;
-		font-weight: 800;
+		top: 39%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		text-align: center;
 	  }
 	  
+	  .infoCard:hover .image {
+		opacity: 0.3;
+	  }
 	  
-	.card-description {
-    color: #d0b59e8c;
-    overflow: hidden;
-    column-count: 2;
-    grid-column-gap: 0.5em;
-    column-gap: 0.5em;
-    column-rule: 1px solid black;
-	line-height: 1em;
-    margin-top: 2.5em;
-    max-width: 85%;
-	}    
-
-	.card-description > p{
-	font-size: .75em;
-    font-weight: 600;
-    margin: 0 0.75em;
-	}
+	  .infoCard:hover .middle {
+		opacity: 1;
+	  }
+	  
+	  .text {
+		font-size: .5em;
+		padding: 2em 1em;
+		column-count: 2;
+    	column-gap: 1em;
+	  }
+	  .text > p{
+		  margin: 0 .25em;
+		  line-height: 1.5;
+	  }
 	  
