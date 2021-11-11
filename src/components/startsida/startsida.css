@@ -1,3 +1,8 @@
+main{
+    max-width: 100vw;
+    min-height: 80vh;
+}
+
 .landingSection{
     display: flex;
     justify-content: space-between;
@@ -6,15 +11,14 @@
     min-height: 70vh;
     box-sizing: border-box;
     padding: 2em;
-    margin-top: 3em;
+    margin: 2em 0;
     background: #fffefe40;
+    border-radius: 1em;
 }
 
 .textSection{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
     max-width: 50vw;
 }
 
@@ -24,18 +28,18 @@
 
 .textSection > p{
     margin: .5em 0;
-    font-size: 1.25em;
+    font-size: 1em;
 }
 
 aside{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     border: 1.5px solid darkgoldenrod;
     background-color: #fff7;
-    max-width: 12em;
+    min-width: 12em;
     min-height: 15em;
     border-radius: 1em;
     padding: 1.25em;
