@@ -35,7 +35,7 @@ const Galleri = () =>{
             
         <section key={index}>
         <li className="infoCard" >
-                <figure>
+                <figure >
                     {!hamster.imgName.includes('.jpg') ? 
                     <img className="card-image infoCardImg" src={hamster.imgName} alt="hamster profile" /> :
                     <img className="card-image infoCardImg" src={`../img/${hamster.imgName}`} alt="hamster profile" />}

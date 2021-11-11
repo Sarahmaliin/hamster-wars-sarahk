@@ -36,10 +36,10 @@ main{
 .grid{
 	padding-inline: unset;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 2em;
+	grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+	grid-gap: 1em;
 	min-width: 97%;
-    max-width: 90%;
+    max-width: 100%;
 	align-items: flex-start;
 	margin-bottom: 2em;
   }
@@ -235,5 +235,15 @@ main{
 		  line-height: 1.5;
 	  }
 	  
+
+	  @media only screen and (max-width: 600px){
+
+		  .formFields{
+			  min-width: 20em;
+		  }
+		  .grid{
+			  min-width: unset;
+		  }
+	  }
 
 	  
