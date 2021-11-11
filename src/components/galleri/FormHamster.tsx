@@ -15,6 +15,7 @@ const FormHamster = () =>{
     const [ errorFood, setErrorFood ] = useState<string>('')
     const [ errorLoves, setErrorLoves ] = useState<string>('')
     const [ errorImg, setErrorImg ] = useState<string>('')
+    const [errorMsg, setErrorMsg ] = useState<string>('')
 
 
     const [newHamster, setNewHamster] = useState({
@@ -39,7 +40,7 @@ const FormHamster = () =>{
         console.log('fetched')
         if(allOkey === true){
             saveForm()
-            reloadAfterSubmit()
+            
         }  
          if(allOkey === false){
             console.log('ohoh false')
@@ -54,16 +55,20 @@ const FormHamster = () =>{
     }
 
     async function saveForm () {
-        const res = await fetch('/hamsters', {
+        const res = await fetch('/hamster', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             },
             body: JSON.stringify(newHamster)
         })
+        if (res.status >= 400 && res.status < 600) {
+            setErrorMsg('Serverfel. Kunde inte lägga till hamster. Vänligen försök uppdatera sidan.')
+        }
         let data = await res.json()
         setNewHamster(data)
         console.log(newHamster)
+        reloadAfterSubmit()
     }
 
     const ValidateName = ()=>{
@@ -135,6 +140,7 @@ const FormHamster = () =>{
                 <h2 className='showHideForm' onClick={() => setShowForm(!showForm)}>-</h2>
                 </article>
                 <section className='formFields'>
+                    <p className='errorMessages serverError'>{errorMsg}</p>
                     <h1 className='headline'>Lägg till en ny hamster</h1>
                     <h3 className='errorMessages'>{errorName}</h3>
                     <input className='name' onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />

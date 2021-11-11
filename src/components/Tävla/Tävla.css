@@ -79,6 +79,10 @@ figure > img{
     0 16px 16px rgb(0 0 0 / 12%);
 }
 
+.serverErrorRandom{
+    font-size: 1em;
+}
+
 ul{
     display: flex;
     flex-direction: row;

@@ -27,6 +27,11 @@ main{
 	padding: 1em;
   }
 
+  .serverError{
+	  font-size: 1em;
+	  max-width: 12em;
+  }
+
 
 .grid{
 	padding-inline: unset;
