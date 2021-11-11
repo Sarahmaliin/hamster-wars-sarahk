@@ -36,6 +36,7 @@ main{
 	min-width: 97%;
     max-width: 90%;
 	align-items: flex-start;
+	margin-bottom: 2em;
   }
   
   .infoCard{
@@ -118,10 +119,6 @@ main{
 	min-height: 3em;
   }
 
-  .trashcan:hover{
-	background-color: #BF9A7A;
-    color: black;
-  }
 
   /* Form CSS */
 
@@ -185,6 +182,12 @@ main{
 	.errorMessages{
 			color: #bf1111;
 		}
+
+	.showHideForm, .trashcan{
+		cursor: pointer;
+	}
+
+	
 
 	/* Overlay */
 	  

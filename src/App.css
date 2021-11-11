@@ -16,6 +16,10 @@ p, button, h3{
   color: black;
 }
 
+button, a{
+  cursor: pointer;
+}
+
 
 img{
   border-radius: 1em;

@@ -38,11 +38,11 @@ const FormHamster = () =>{
     useEffect(() =>{
         console.log('fetched')
         if(allOkey === true){
-            console.log('okey')
-            alert('okey')
+            reloadAfterAubmit()
         }  
          if(allOkey === false){
             console.log('ohoh false')
+            //add reload form
         } 
         // eslint-disable-next-line
     }, [allOkey])
@@ -69,8 +69,7 @@ const FormHamster = () =>{
     const ValidateAge = () =>{
         const hamsterValidateAge = ageInput.value.trim()
         let nmb = Number(hamsterValidateAge)
-        return nmb > 2 && nmb < 100 && !isNaN(nmb) && !hamsterValidateAge.includes(',') && !hamsterValidateAge.includes('.')
-                    
+        return nmb > 2 && nmb < 100 && !isNaN(nmb) && !hamsterValidateAge.includes(',') && !hamsterValidateAge.includes('.')            
     }
 
     const ValidateFood = () =>{
@@ -83,22 +82,7 @@ const FormHamster = () =>{
         return hamsterValidateLove.length >= 2 
     }
 
- 
-
-    
-
     const ValidateImg = () =>{
-
-//         async function DoesFileExist(){ GER ERROR 403, VRF??
-//         try{
-//             let response = await fetch(`../img/${imgNameInput.value.trim()}`, { method: 'HEAD' })
-//             return await response.json()
-//     }
-//     catch(error){
-//         console.log(error)
-//     };
-//     }
-// DoesFileExist()
         const hamsterValidateImg = imgNameInput.value.trim() 
         return hamsterValidateImg.length >= 2 && hamsterValidateImg.includes('-') && hamsterValidateImg.includes('.') 
     }
@@ -130,11 +114,12 @@ const FormHamster = () =>{
 
         setAllOkey(ValidateName() && ValidateAge() && ValidateFood() && ValidateLove() && ValidateImg())
 
-        console.log(allOkey)
         saveForm()
-        console.log(true)
-        //add new hamster added pop-up + reload page
-        // window.location.reload()
+    }
+
+    const reloadAfterAubmit = () =>{
+        console.log('added')
+        window.location.reload()
     }
 
     const handleChange = (event: any) =>{
@@ -145,7 +130,7 @@ const FormHamster = () =>{
         <>
         {showForm ? <form onSubmit={SaveInput} className={'form ' + showForm} >
             <article className="addHamster">
-                <h2 onClick={() => setShowForm(!showForm)}>-</h2>
+                <h2 className='showHideForm' onClick={() => setShowForm(!showForm)}>-</h2>
                 </article>
                 <section className='formFields'>
                     <h1 className='headline'>Lägg till en ny hamster</h1>
@@ -164,7 +149,7 @@ const FormHamster = () =>{
                 </section>
                 
             </form>: <article className="addHamster">
-            <h2 onClick={() => setShowForm(!showForm)}>+</h2>
+            <h2 className='showHideForm' onClick={() => setShowForm(!showForm)}>+</h2>
         </article>}
         </>
     )
