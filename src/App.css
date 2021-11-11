@@ -7,6 +7,10 @@ html{
   background: #BF9A7A;
 }
 
+html, body{
+  overflow-x: hidden;
+}
+
 h1, h2, a{
   font-family: 'Playfair Display', serif;
   color: black;
@@ -74,5 +78,13 @@ h2{
   margin: unset;
 }
 
+@media only screen and (max-width: 600px){
+  .header-text > h2{
+    font-size: 1em;
+  }
+  .menuSection > a{
+    font-size: 1em;
+  }
+}
 
 

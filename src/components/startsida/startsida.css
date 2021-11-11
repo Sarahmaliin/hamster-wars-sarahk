@@ -88,3 +88,15 @@ aside > ul{
 aside > ul > p{
     font-size: 1em;
 }
+
+@media only screen and (max-width: 600px){
+    .landingSection{
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .textSection{
+        max-width: 14em;
+    }
+}
