@@ -38,15 +38,20 @@ const FormHamster = () =>{
     useEffect(() =>{
         console.log('fetched')
         if(allOkey === true){
-            reloadAfterAubmit()
+            saveForm()
+            reloadAfterSubmit()
         }  
          if(allOkey === false){
             console.log('ohoh false')
-            //add reload form
+            reloadForm()
         } 
         // eslint-disable-next-line
     }, [allOkey])
 
+    const reloadForm = () =>{
+        console.log('error')
+        
+    }
 
     async function saveForm () {
         const res = await fetch('/hamsters', {
@@ -92,8 +97,6 @@ const FormHamster = () =>{
         event.preventDefault()
         if(!ValidateName()) {
             setErrorName('Nedanstående namn-fält är inkorrekt')
-            console.log('namn korrigeras')
-            nameInput.value.replace('', '')
         }
 
         if(!ValidateAge()) {
@@ -110,19 +113,18 @@ const FormHamster = () =>{
 
         if(!ValidateImg()) {
             setErrorImg('Nedanstående bild-fält är inkorrekt')
+            
         }
 
         setAllOkey(ValidateName() && ValidateAge() && ValidateFood() && ValidateLove() && ValidateImg())
-
-        saveForm()
     }
 
-    const reloadAfterAubmit = () =>{
+    const reloadAfterSubmit = () =>{
         console.log('added')
         window.location.reload()
     }
 
-    const handleChange = (event: any) =>{
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>{
         setNewHamster({...newHamster, [event.target.name]: event.target.value.trim()})  //trim removes whitespace
     }  
 
@@ -143,7 +145,7 @@ const FormHamster = () =>{
                     <h3 className='errorMessages'>{errorLoves}</h3>
                     <input className='loves' onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
                     <h3 className='errorMessages'>{errorImg}</h3>
-                    <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn (hamster-3.jpg)' required />
+                    <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn' required />
                     
                 <button  type="submit">Lägg till</button>
                 </section>

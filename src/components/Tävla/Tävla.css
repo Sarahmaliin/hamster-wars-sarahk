@@ -32,19 +32,6 @@ h1{
     line-height: 1.75em;
 }
 
-button{
-    font-size: 1em;
-    padding: 1em;
-    border: none;
-    border-radius: 1em;
-    transition: .4s;
-}
-
-button:hover{
-    background-color: #BF9A7A;
-    color: black;
-}
-
 .hamsters{
     display: flex;
     flex-direction: row;
@@ -81,7 +68,6 @@ figure > img{
     justify-content: center;
     align-items: center;
     max-width: 90vw;
-    max-height: 30em;
     border-radius: 1em;
     padding: 2em 0;
     margin: 2em 1em;
