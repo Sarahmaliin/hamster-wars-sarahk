@@ -37,10 +37,6 @@ main{
     justify-content: flex-end;
 }
 
-.loadGameBtn > a{
-    text-decoration: none;
-}
-
 button{
     font-size: 1em;
     padding: 1em;
@@ -57,14 +53,16 @@ button:hover{
 
 aside{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
+    overflow: auto;
     border: 1.5px solid darkgoldenrod;
     background-color: #fff7;
-    min-width: 12em;
-    min-height: 15em;
+    max-width: 12em;
+    min-height: 10em;
+    max-height: 15em;
     border-radius: 1em;
     padding: 1.25em;
     margin: 1em 0;
@@ -73,6 +71,7 @@ aside{
 
 aside > p{
     margin: unset;
+    margin-bottom: .5em;
 }
 
 aside > ul{
@@ -84,4 +83,8 @@ aside > ul{
     justify-content: flex-start;
     align-items: center;
     list-style: none;
+}
+
+aside > ul > p{
+    font-size: 1em;
 }

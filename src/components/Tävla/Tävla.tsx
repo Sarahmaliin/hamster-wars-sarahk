@@ -25,6 +25,7 @@ const Tävla = () =>{
     const [visible, setVisible] = useState<boolean>(false)
     const [winner, setWinner] = useState<HamsterInfo[]>()
     const [loser, setLoser]  = useState<HamsterInfo[]>()
+    const [errorMsg, setErrorMsg ] = useState<string>('')
     
 
     useEffect(() =>{
@@ -173,6 +174,9 @@ useEffect(() =>{
 
 async function sendRequestOne(saveData: any){
     const response = await fetch ('/hamsters/random')
+    if (response.status >= 400 && response.status < 600) {
+        setErrorMsg('Kunde inte hämta slumpad hamster, vänligen försök uppdatera sidan.')
+    }
     const data = await response.json()
     saveData(data)
     console.log(data)
@@ -180,6 +184,9 @@ async function sendRequestOne(saveData: any){
 
 async function sendRequestTwo(saveD: any){
     const response = await fetch ('/hamsters/random')
+    if (response.status >= 400 && response.status < 600) {
+        setErrorMsg('Kunde inte hämta slumpad hamster, vänligen försök uppdatera sidan.')
+    }
     const data = await response.json()
     saveD(data)
     console.log(data)
@@ -191,6 +198,7 @@ console.log(saveRandomTwo)
         <section className='hamsterCompete'>
             <h1>Rösta på sötaste hamstern</h1>
             <ul>
+            <p className='errorMessages serverErrorRandom'>{errorMsg}</p>
             { saveRandomOne && saveRandomTwo ? 
             <>
             <li className="competingHamsters">
@@ -216,7 +224,7 @@ console.log(saveRandomTwo)
             </ul>        
         </section>
         <section className={'overlay ' + visible}>
-            
+            <p className='errorMessages'>{errorMsg}</p>
             { saveRandomOne && saveRandomTwo && winner && loser ?
             <ul className='results'>
             <li className='results-hamster'>
