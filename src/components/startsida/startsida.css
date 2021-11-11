@@ -31,6 +31,30 @@ main{
     font-size: 1em;
 }
 
+.loadGame{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.loadGameBtn > a{
+    text-decoration: none;
+}
+
+button{
+    font-size: 1em;
+    padding: 1em;
+    border: none;
+    border-radius: 1em;
+    transition: .4s;
+    background-color: #e5d6ca;
+}
+
+button:hover{
+    background-color: #BF9A7A;
+    color: black;
+}
+
 aside{
     display: flex;
     flex-direction: column;
