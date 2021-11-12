@@ -9,6 +9,7 @@ const Galleri = () =>{
     const [msg, setMsg ] = useState<string>('')
     const [ delMsg, setDelMsg] = useState<string>('')
     const [ serverStatus, setServerStatus ] = useState<boolean>()
+    const [ formClosed, setFormClosed ] = useState<boolean>()
 
 
     useEffect(() =>{
@@ -23,6 +24,10 @@ const Galleri = () =>{
     useEffect(() =>{
         sendRequest(setHamsterData)
     }, [])
+
+    useEffect(() =>{
+        sendRequest(setHamsterData)
+    }, [formClosed])
 
     const deleteMethod = {
         method: 'DELETE',
@@ -39,13 +44,13 @@ const Galleri = () =>{
             setDelMsg('Kunde inte ta bort hamster, vänligen ladda om sidan och testa igen')
         }
         else{
-            document.location.reload()
+            sendRequest(setHamsterData)
         }
     }
 
     return(
     <>
-    < FormHamster />
+    < FormHamster formClosed={setFormClosed} />
     <ul className="grid">
         <p className='errorMessages deleteMsg'>{delMsg}</p>
         {hamsterData ? hamsterData.map((hamster, index) =>(   
