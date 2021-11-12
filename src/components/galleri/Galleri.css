@@ -99,6 +99,7 @@ main{
   }
   
   .buttons{
+	position: relative;
 	min-height: 4em;
 	width: 90%;
     display: flex;
@@ -233,6 +234,18 @@ main{
 	  .text > p{
 		  margin: 0 .25em;
 		  line-height: 1.5;
+	  }
+
+	  .galleriMsg{
+		position: absolute;
+	  }
+
+	  .deleteMsg{
+		margin: unset;
+    	position: absolute;
+    	left: 2em;
+    	top: 3em;
+    	font-size: 1em;
 	  }
 	  
 

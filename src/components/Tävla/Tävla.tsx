@@ -49,9 +49,7 @@ const Tävla = () =>{
              body: JSON.stringify(voting),
            })
           setVisible(!visible)
-          console.log(voting)
           setWinner(saveRandomOne)
-          
             }
              // eslint-disable-next-line
     }, [winnerOne])
@@ -67,13 +65,10 @@ const Tävla = () =>{
          body: JSON.stringify(voting2),
        })
       setVisible(!visible)
-      console.log(voting2)
       setWinner(saveRandomTwo)
         }
          // eslint-disable-next-line
 }, [winnerTwo])
-
-console.log(winner)
 
 useEffect(() =>{
     const votingLose1 = {defeats: loserOne}
@@ -86,7 +81,6 @@ useEffect(() =>{
      body: JSON.stringify(votingLose1),
    })
   setVisible(!visible)
-  console.log(votingLose1)
   setLoser(saveRandomOne)
     }
      // eslint-disable-next-line
@@ -103,7 +97,6 @@ useEffect(() =>{
      body: JSON.stringify(votingLose2),
    })
   setVisible(!visible)
-  console.log(votingLose2)
   setLoser(saveRandomTwo)
     }
      // eslint-disable-next-line
@@ -120,7 +113,6 @@ useEffect(() =>{
      body: JSON.stringify(game1),
    })
   setVisible(!visible)
-  console.log(game1)
     }
      // eslint-disable-next-line
 }, [gameOne])
@@ -136,16 +128,13 @@ useEffect(() =>{
      body: JSON.stringify(game2),
    })
   setVisible(!visible)
-  console.log(game2)
     }
      // eslint-disable-next-line
 }, [gameTwo])
 
     async function Vote(HamsterId: HamsterInfo){
-        console.log(HamsterId)
         if(saveRandomOne && saveRandomTwo){
             if(HamsterId === saveRandomOne[id]){
-                console.log('winner is hamster one')
                 const updateNumber = Number(saveRandomOne[wins]) + 1
                 setWinnerOne(updateNumber)
                 const updateLoser2 = Number(saveRandomTwo[defeats]) + 1
@@ -153,14 +142,11 @@ useEffect(() =>{
                 const updateGame1 = Number(saveRandomOne[games]) + 1
                 setGameOne(updateGame1)
                 const updateGame2 = Number(saveRandomTwo[games]) + 1
-                setGameTwo(updateGame2)
-                console.log(saveRandomOne)                
+                setGameTwo(updateGame2)             
                 }
             if(HamsterId === saveRandomTwo[id]){
-                console.log('winner two')
                 const updateNumber2 = Number(saveRandomTwo[wins]) + 1
                 setWinnerTwo(updateNumber2)
-                console.log('loser 1')
                 const updateLoser1 = Number(saveRandomOne[defeats]) + 1
                 setLoserOne(updateLoser1)
                 const updateGame1 = Number(saveRandomOne[games]) + 1
@@ -179,7 +165,6 @@ async function sendRequestOne(saveData: any){
     }
     const data = await response.json()
     saveData(data)
-    console.log(data)
 }
 
 async function sendRequestTwo(saveD: any){
@@ -189,10 +174,7 @@ async function sendRequestTwo(saveD: any){
     }
     const data = await response.json()
     saveD(data)
-    console.log(data)
 }
-console.log(saveRandomOne)
-console.log(saveRandomTwo)
     return(
         <section className='compete'>
         <section className='hamsterCompete'>

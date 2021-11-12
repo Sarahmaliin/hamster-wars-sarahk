@@ -6,7 +6,21 @@ import './Galleri.css'
 const Galleri = () =>{
 
     const [ hamsterData, setHamsterData ] = useState<HamsterInfo[] | null>(null)
+    const [msg, setMsg ] = useState<string>('')
+    const [ delMsg, setDelMsg] = useState<string>('')
+    const [ serverStatus, setServerStatus ] = useState<boolean>()
 
+
+    useEffect(() =>{
+        if(serverStatus === true){
+            setMsg('Serverfel. Kunde inte lägga till hamster. Vänligen försök uppdatera sidan.')
+        }
+        else{
+            setMsg('Loading hamsters')
+        } 
+       
+
+    }, [serverStatus])
 
     useEffect(() =>{
         sendRequest(setHamsterData)
@@ -21,8 +35,14 @@ const Galleri = () =>{
     }
 
     async function DeleteOne (id: string) {
-        await fetch(`/hamsters/${id}`, deleteMethod)
-        window.location.reload();
+        let res =await fetch(`/hamsters/${id}`, deleteMethod)
+        if (res.status >= 400 && res.status < 600) {
+            document.documentElement.scrollTop = 0
+            setDelMsg('Kunde inte ta bort hamster, vänligen ladda om sidan och testa igen')
+        }
+        else{
+            window.location.reload();
+        }
     }
     
 
@@ -31,8 +51,8 @@ const Galleri = () =>{
         <>
         < FormHamster />
         <ul className="grid">
+        <p className='errorMessages deleteMsg'>{delMsg}</p>
         {hamsterData ? hamsterData.map((hamster, index) =>(   
-            
         <section key={index}>
         <li className="infoCard" >
                 <figure >
@@ -58,18 +78,23 @@ const Galleri = () =>{
         </section>
         ))
         :
-        'Loading data'
+        <p className='errorMessages galleriMsg'>{msg}</p>
         }
         
     </ul>
     </>
     )
-}
 
 async function sendRequest(saveData: any){
     const response = await fetch ('/hamsters')
+    if (response.status >= 400 && response.status < 600) {
+        setServerStatus(response.status >= 400 && response.status < 600)
+    }
     const data = await response.json()
     saveData(data)
 }
+}
+
+
 
 export default Galleri
