@@ -10,7 +10,7 @@ const FormHamster = (props: any) =>{
     const [hamsterFood] = useState('')
     const [hamsterLove] = useState('')
     const [hamsterImg] = useState('')
-    const [allOkey, setAllOkey] = useState<boolean>(false) 
+    const [allOkey, setAllOkey] = useState<boolean>() 
     const [ errorName, setErrorName ] = useState<string>('')
     const [ errorAge, setErrorAge ] = useState<string>('')
     const [ errorFood, setErrorFood ] = useState<string>('')
