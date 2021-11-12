@@ -139,7 +139,7 @@ const FormHamster = (props: any) =>{
                 <section className='formFields'>
                     <p className='errorMessages serverError'>{errorMsg}</p>
                     <h1 className='headline'>Lägg till en ny hamster</h1>
-                    <p className='errorMessages'>{formError}</p>
+                    <h3 className='errorMessages'>{formError}</h3>
                     <h3 className='errorMessages'>{errorName}</h3>
                     <input className='name' onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
                     <h3 className='errorMessages'>{errorAge}</h3>
