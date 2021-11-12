@@ -14,6 +14,11 @@ main{
     margin: 2em 0;
     background: #fffefe40;
     border-radius: 1em;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 
+    0 2px 2px rgb(0 0 0 / 12%), 
+    0 4px 4px rgb(0 0 0 / 12%), 
+    0 8px 8px rgb(0 0 0 / 12%), 
+    0 16px 16px rgb(0 0 0 / 12%);
 }
 
 .textSection{
@@ -66,7 +71,11 @@ aside{
     border-radius: 1em;
     padding: 1.25em;
     margin: 1em 0;
-    box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 0 2px 2px rgb(0 0 0 / 12%), 0 4px 4px rgb(0 0 0 / 12%), 0 8px 8px rgb(0 0 0 / 12%), 0 16px 16px rgb(0 0 0 / 12%);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 
+    0 2px 2px rgb(0 0 0 / 12%), 
+    0 4px 4px rgb(0 0 0 / 12%), 
+    0 8px 8px rgb(0 0 0 / 12%), 
+    0 16px 16px rgb(0 0 0 / 12%);
 }
 
 aside > p{

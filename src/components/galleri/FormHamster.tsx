@@ -37,25 +37,22 @@ const FormHamster = () =>{
     const imgNameInput = (document.querySelector('.imgName') as HTMLInputElement)
 
     useEffect(() =>{
-        console.log('fetched')
         if(allOkey === true){
             saveForm()
             
         }  
          if(allOkey === false){
-            console.log('ohoh false')
             reloadForm()
         } 
         // eslint-disable-next-line
     }, [allOkey])
 
     const reloadForm = () =>{
-        console.log('error')
-        
+        console.log('')
     }
 
     async function saveForm () {
-        const res = await fetch('/hamster', {
+        const res = await fetch('/hamsters', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',

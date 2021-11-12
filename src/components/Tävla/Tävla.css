@@ -67,6 +67,7 @@ figure > img{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
     max-width: 90vw;
     border-radius: 1em;
     padding: 2em 0;
@@ -103,10 +104,10 @@ ul{
 .overlay.true{
     display: flex;
     position: absolute;
-    max-width: 88.5vw;
+    min-height: 65%;
     background: #dec9b8;
-    top: 5em;
-    right: 1.5em;
+    top: 8.75em;
+    right: .5em;
     border-radius: 1em;
     padding: 2em 0;
     box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 
@@ -172,4 +173,13 @@ ul{
         min-height: 9em;
         width: unset;
     }
+}
+
+@media only screen and (max-width: 600px){
+    .overlay.true{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
