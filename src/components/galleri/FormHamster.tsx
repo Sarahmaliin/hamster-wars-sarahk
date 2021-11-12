@@ -125,7 +125,7 @@ const FormHamster = () =>{
 
     const reloadAfterSubmit = () =>{
         console.log('added')
-        window.location.reload()
+        document.location.reload()
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>{
