@@ -35,6 +35,7 @@ const FormHamster = () =>{
     const favFoodInput = (document.querySelector('.favFood') as HTMLInputElement)
     const lovesInput = (document.querySelector('.loves') as HTMLInputElement)
     const imgNameInput = (document.querySelector('.imgName') as HTMLInputElement)
+    let regExp = /^[a-zA-Z]*$/;
 
     useEffect(() =>{
         if(allOkey === true){
@@ -70,7 +71,8 @@ const FormHamster = () =>{
 
     const ValidateName = ()=>{
         const hamsterValidateName = nameInput.value.trim()
-        return hamsterValidateName.length >= 2 
+        
+        return hamsterValidateName.length >= 2  && !hamsterValidateName.includes('-') && !hamsterValidateName.includes('.') && regExp.test(hamsterValidateName)
     }
 
     const ValidateAge = () =>{
@@ -81,12 +83,12 @@ const FormHamster = () =>{
 
     const ValidateFood = () =>{
         const hamsterValidateFavFood = favFoodInput.value.trim()
-        return hamsterValidateFavFood.length >= 2 
+        return hamsterValidateFavFood.length >= 2 && regExp.test(hamsterValidateFavFood)
     }
 
     const ValidateLove = () =>{
         const hamsterValidateLove = lovesInput.value.trim()
-        return hamsterValidateLove.length >= 2 
+        return hamsterValidateLove.length >= 2 && regExp.test(hamsterValidateLove)
     }
 
     const ValidateImg = () =>{
@@ -98,23 +100,23 @@ const FormHamster = () =>{
         
         event.preventDefault()
         if(!ValidateName()) {
-            setErrorName('Nedanstående namn-fält är inkorrekt')
+            setErrorName('Nedanstående namn-fält är inkorrekt. Se till så att namnet är över 2 bokstäver, inte innehåller specialtecken')
         }
 
         if(!ValidateAge()) {
-            setErrorAge('Nedanstående ålder-fält är inkorrekt.')
+            setErrorAge('Nedanstående ålder-fält är inkorrekt. Se till så att åldern är över 2, under 100 och inte inkluderar decimaler')
         }
 
         if(!ValidateFood()) {
-            setErrorFood('Nedanstående favoritmat-fält är inkorrekt')
+            setErrorFood('Nedanstående favoritmat-fält är inkorrekt, se till så att namnet är över 2 bokstäver, inte innehåller specialtecken')
         }
 
         if(!ValidateLove()) {
-            setErrorLoves('Nedanstående älskar-fält är inkorrekt')
+            setErrorLoves('Nedanstående älskar-fält är inkorrekt, se till så att namnet är över 2 bokstäver, inte innehåller specialtecken')
         }
 
         if(!ValidateImg()) {
-            setErrorImg('Nedanstående bild-fält är inkorrekt')
+            setErrorImg('Nedanstående bild-fält är inkorrekt, se till så att bildurl är över 2 bokstäver, inkluderar bindestreck och punkt')
             
         }
 

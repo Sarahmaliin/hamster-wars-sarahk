@@ -74,7 +74,7 @@ const Galleri = () =>{
         </section>
         ))
         :
-        <p className='errorMessages galleriMsg'>{msg}</p>
+        <p className='galleriMsg'>{msg}</p>
         }   
     </ul>
     </>

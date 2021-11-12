@@ -42,7 +42,13 @@ main{
     max-width: 100%;
 	align-items: flex-start;
 	margin-bottom: 2em;
-  }
+	animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from { opacity: 0}
+  to   { opacity: 1}
+}
   
   .infoCard{
 	display: flex;
@@ -186,6 +192,7 @@ main{
 	}
 
 	.errorMessages{
+			max-width: 19em;
 			color: #bf1111;
 		}
 

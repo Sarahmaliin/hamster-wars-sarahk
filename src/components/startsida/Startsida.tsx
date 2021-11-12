@@ -30,7 +30,7 @@ const Startsida = () =>{
                     <p>1:a platsen: </p>
                     <ul>
                         {leader ? leader.map((lead, index) =>(
-                            <li key={index}>{lead.name} med {lead.wins} vinst/-er</li>
+                            <li key={index}>{lead.name} med {lead.wins} {lead.wins > 1 ? 'vinster': 'vinst'}</li>
                         ))
                         : 
                         <p className='errorMessages'>{errorMsg}</p> }
