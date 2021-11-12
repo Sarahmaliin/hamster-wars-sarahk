@@ -251,7 +251,7 @@ const Tävla = () =>{
                 }
                 </li>
                 <section className='restartBtn'>
-                    <button onClick={() => window.location.reload()}>Starta nytt spel</button>
+                    <button onClick={() => document.location.reload()}>Starta nytt spel</button>
                 </section>
             
             </ul>
