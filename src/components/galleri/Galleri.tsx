@@ -18,8 +18,6 @@ const Galleri = () =>{
         else{
             setMsg('Loading hamsters')
         } 
-       
-
     }, [serverStatus])
 
     useEffect(() =>{
@@ -28,10 +26,10 @@ const Galleri = () =>{
 
     const deleteMethod = {
         method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                'Accept': 'application/json;charset=UTF-8',
-            },
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'Accept': 'application/json;charset=UTF-8',
+        },
     }
 
     async function DeleteOne (id: string) {
@@ -44,17 +42,15 @@ const Galleri = () =>{
             window.location.reload();
         }
     }
-    
-
 
     return(
-        <>
-        < FormHamster />
-        <ul className="grid">
+    <>
+    < FormHamster />
+    <ul className="grid">
         <p className='errorMessages deleteMsg'>{delMsg}</p>
         {hamsterData ? hamsterData.map((hamster, index) =>(   
         <section key={index}>
-        <li className="infoCard" >
+            <li className="infoCard" >
                 <figure >
                     {!hamster.imgName.includes('.jpg') ? 
                     <img className="card-image infoCardImg" src={hamster.imgName} alt="hamster profile" /> :
@@ -62,25 +58,24 @@ const Galleri = () =>{
                     <p className='card-title'>{hamster.name}</p> 
                 </figure>
                 <section className='middle'>
-                <section className='text'>
-                        <p >Ålder: {hamster.age}</p>
-                        <p >Älskar att: {hamster.loves}</p> 
-                        <p >Favoritmat: {hamster.favFood}</p>
-                        <p >Spelade spel: {hamster.games}</p>
-                        <p >Vinster: {hamster.wins}</p>
-                        <p >Förluster: {hamster.defeats}</p>       
+                    <section className='text'>
+                            <p >Ålder: {hamster.age}</p>
+                            <p >Älskar att: {hamster.loves}</p> 
+                            <p >Favoritmat: {hamster.favFood}</p>
+                            <p >Spelade spel: {hamster.games}</p>
+                            <p >Vinster: {hamster.wins}</p>
+                            <p >Förluster: {hamster.defeats}</p>       
                     </section> 
                 </section>
-            <section className="buttons">
-                <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
-            </section>
-        </li>
+                <section className="buttons">
+                    <section onClick={() => DeleteOne(hamster.id)} className='trashcan'></section>
+                </section>
+            </li>
         </section>
         ))
         :
         <p className='errorMessages galleriMsg'>{msg}</p>
-        }
-        
+        }   
     </ul>
     </>
     )
@@ -94,7 +89,5 @@ async function sendRequest(saveData: any){
     saveData(data)
 }
 }
-
-
 
 export default Galleri

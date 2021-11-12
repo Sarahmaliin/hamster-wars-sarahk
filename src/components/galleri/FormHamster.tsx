@@ -148,7 +148,7 @@ const FormHamster = () =>{
                     <h3 className='errorMessages'>{errorLoves}</h3>
                     <input className='loves' onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
                     <h3 className='errorMessages'>{errorImg}</h3>
-                    <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildnamn' required />
+                    <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildurl' required />
                     
                 <button  type="submit">Lägg till</button>
                 </section>
