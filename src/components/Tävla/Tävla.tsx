@@ -167,6 +167,14 @@ const Tävla = () =>{
         const data = await response.json()
         saveD(data)
     }
+
+    const reloadNewGame = () =>{
+        sendRequestOne(setSaveRandomOne)
+        sendRequestTwo(setSaveRandomTwo)
+        setVisible(false)
+    }
+
+
     return(
         <section className='compete'>
         <section className='hamsterCompete'>
@@ -251,7 +259,7 @@ const Tävla = () =>{
                 }
                 </li>
                 <section className='restartBtn'>
-                    <button onClick={() => document.location.reload()}>Starta nytt spel</button>
+                    <button onClick={() => reloadNewGame()}>Starta nytt spel</button>
                 </section>
             
             </ul>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import './Galleri.css'
 
+
 const FormHamster = () =>{
 
   const [ showForm, setShowForm ] = useState<boolean>(false)
