@@ -39,7 +39,7 @@ const Galleri = () =>{
             setDelMsg('Kunde inte ta bort hamster, vänligen ladda om sidan och testa igen')
         }
         else{
-            window.location.reload();
+            document.location.reload()
         }
     }
 
