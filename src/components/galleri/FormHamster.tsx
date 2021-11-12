@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import './Galleri.css'
 
 
-const FormHamster = () =>{
+const FormHamster = (props: any) =>{
 
   const [ showForm, setShowForm ] = useState<boolean>(false)
     const [hamsterName] = useState('')
@@ -10,12 +10,13 @@ const FormHamster = () =>{
     const [hamsterFood] = useState('')
     const [hamsterLove] = useState('')
     const [hamsterImg] = useState('')
-    const [allOkey, setAllOkey] = useState<boolean>(false) 
+    const [allOkey, setAllOkey] = useState<boolean>() 
     const [ errorName, setErrorName ] = useState<string>('')
     const [ errorAge, setErrorAge ] = useState<string>('')
     const [ errorFood, setErrorFood ] = useState<string>('')
     const [ errorLoves, setErrorLoves ] = useState<string>('')
     const [ errorImg, setErrorImg ] = useState<string>('')
+    const [ formError, setFormError ] = useState<string>('')
     const [errorMsg, setErrorMsg ] = useState<string>('')
 
 
@@ -44,14 +45,11 @@ const FormHamster = () =>{
             
         }  
          if(allOkey === false){
-            reloadForm()
+            setFormError('Något gick fel, var god se felmeddelanden nedan')
         } 
         // eslint-disable-next-line
     }, [allOkey])
 
-    const reloadForm = () =>{
-        console.log('')
-    }
 
     async function saveForm () {
         const res = await fetch('/hamsters', {
@@ -66,7 +64,6 @@ const FormHamster = () =>{
         }
         let data = await res.json()
         setNewHamster(data)
-        console.log(newHamster)
         reloadAfterSubmit()
     }
 
@@ -125,8 +122,8 @@ const FormHamster = () =>{
     }
 
     const reloadAfterSubmit = () =>{
-        console.log('added')
-        document.location.reload()
+        props.formClosed(true)
+        setShowForm(false)
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>{
@@ -142,6 +139,7 @@ const FormHamster = () =>{
                 <section className='formFields'>
                     <p className='errorMessages serverError'>{errorMsg}</p>
                     <h1 className='headline'>Lägg till en ny hamster</h1>
+                    <h3 className='errorMessages'>{formError}</h3>
                     <h3 className='errorMessages'>{errorName}</h3>
                     <input className='name' onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
                     <h3 className='errorMessages'>{errorAge}</h3>
