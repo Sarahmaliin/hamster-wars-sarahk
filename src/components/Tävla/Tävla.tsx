@@ -15,7 +15,6 @@ const Tävla = () =>{
     const [hamsterOne, setHamsterOne] = useState<Number>(0)
     const [hamsterOneDefeats, setHamsterOneDefeats] = useState<Number>(0)
     const [hamsterTwoWins, setHamsterTwoWins] = useState<Number>(0)
-    // const [winnerTwo, setWinnerTwo] = useState<Number>(0)
     const [competerOne, setCompeterOne] = useState<HamsterInfo[]>()
     const [hamsterTwoDefeats, setHamsterTwoDefeats] = useState<Number>(0)
     const [gameHamsterOne, setGameHamsterOne] = useState<Number>(0)
@@ -23,7 +22,6 @@ const Tävla = () =>{
     const [visible, setVisible] = useState<boolean>(false)
     const [competerTwo, setCompeterTwo]  = useState<HamsterInfo[]>()
     const [errorMsg, setErrorMsg ] = useState<string>('')
-    const [newHamsterOne, setNewHamsterone] = useState<HamsterInfo[]>()
     const [winner, setWinner] = useState<HamsterInfo[]>()
     const [loser, setLoser] = useState<HamsterInfo[]>()
     
@@ -37,7 +35,6 @@ const Tävla = () =>{
     }, []) 
 
     useEffect(() =>{
-        console.log(hamsterOne, hamsterOneDefeats, gameHamsterOne)
         const voting1 = {wins: hamsterOne, defeats: hamsterOneDefeats, games: gameHamsterOne}
         if(saveRandomOne){
             fetch(`/hamsters/${saveRandomOne[id]}`, {
@@ -48,36 +45,14 @@ const Tävla = () =>{
                 body: JSON.stringify(voting1),
             })
           setVisible(!visible)
-            setCompeterOne(saveRandomOne)
-        //   console.log(saveRandomOne)
+        setCompeterOne(saveRandomOne)
         }
           
         // eslint-disable-next-line
     }, [hamsterOne, hamsterOneDefeats, gameHamsterOne])
 
-    useEffect(() =>{
-        if(competerOne){
-            HamsterOne(competerOne)
-            console.log(competerOne)
-        }
-        
-    }, [competerOne])
-
-
-    async function HamsterOne(hamster: any){
-        if(hamster){
-        console.log(hamster.id)
-        const response = await fetch (`/hamsters/${hamster.id}`)
-        if (response.status >= 400 && response.status < 600) {
-            setErrorMsg('Kunde inte hämta slumpad hamster, vänligen försök uppdatera sidan.')
-        }
-        const data = await response.json()
-        console.log(data)
-        setNewHamsterone(data)
-    }
-        }
-
     
+
     useEffect(() =>{
         const voting2 = {defeats: hamsterTwoDefeats, wins: hamsterTwoWins, games: hamsterTwoGames}
         if(saveRandomTwo){
@@ -164,7 +139,6 @@ const Tävla = () =>{
         setVisible(false)
     }
 
-    console.log(saveRandomOne)
     return(
         <section className='compete'>
         <section className='hamsterCompete'>
@@ -197,18 +171,14 @@ const Tävla = () =>{
         </section>
         <section className={'overlay ' + visible}>
             <p className='errorMessages'>{errorMsg}</p>
-            { saveRandomOne && newHamsterOne && saveRandomTwo && competerOne && competerTwo ?
+            { saveRandomOne && saveRandomTwo && competerOne && competerTwo ?
             <>
             <ul className='results'>
-                {console.log(newHamsterOne)}
-            {console.log(saveRandomOne)}
                 <li className='results-hamster'>
                     <h1>Vinnare: </h1>
                     {winner && loser && winner[id] === saveRandomOne[id] ? 
                     
-                    <section>{console.log(winner[id])}
-                    {console.log(saveRandomOne[id])}
-                    {console.log(saveRandomTwo[id])}
+                    <section>
                     <figure className='results-image'>
                         {!saveRandomOne[imgName].toString().includes('.jpg') ? 
                         <img src={`${saveRandomOne[imgName]}`} alt="hamster" />
