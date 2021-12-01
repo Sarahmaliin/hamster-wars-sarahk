@@ -22,7 +22,6 @@ const Tävla = () =>{
     const [visible, setVisible] = useState<boolean>(false)
     const [competerTwo, setCompeterTwo]  = useState<HamsterInfo[]>()
     const [errorMsg, setErrorMsg ] = useState<string>('')
-    const [newHamsterOne, setNewHamsterone] = useState<HamsterInfo[]>()
     const [winner, setWinner] = useState<HamsterInfo[]>()
     const [loser, setLoser] = useState<HamsterInfo[]>()
     
@@ -53,7 +52,7 @@ const Tävla = () =>{
     }, [hamsterOne, hamsterOneDefeats, gameHamsterOne])
 
     
-    
+
     useEffect(() =>{
         const voting2 = {defeats: hamsterTwoDefeats, wins: hamsterTwoWins, games: hamsterTwoGames}
         if(saveRandomTwo){
