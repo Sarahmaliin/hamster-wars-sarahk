@@ -159,12 +159,6 @@ ul{
     min-height: 22em;
 }
 
-/* .results-hamster > figure {
-	min-width: unset;
-    height: unset;
-} */
-
-
 .restartBtn{
     width: 73vw;
     display: flex;
