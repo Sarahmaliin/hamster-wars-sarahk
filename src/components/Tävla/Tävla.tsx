@@ -12,17 +12,22 @@ import { HamsterInfo } from "../../models/HamsterInfo"
 const Tävla = () =>{
     const [saveRandomOne, setSaveRandomOne] = useState<HamsterInfo[] | null>(null)
     const [saveRandomTwo, setSaveRandomTwo] = useState<HamsterInfo[] | null>(null)
-    const [winnerOne, setWinnerOne] = useState<Number>(0)
-    const [winnerTwo, setWinnerTwo] = useState<Number>(0)
-    const [loserOne, setLoserOne] = useState<Number>(0)
-    const [loserTwo, setLoserTwo] = useState<Number>(0)
-    const [gameOne, setGameOne] = useState<Number>(0)
-    const [gameTwo, setGameTwo] = useState<Number>(0)
+    const [hamsterOne, setHamsterOne] = useState<Number>(0)
+    const [hamsterOneDefeats, setHamsterOneDefeats] = useState<Number>(0)
+    const [hamsterTwoWins, setHamsterTwoWins] = useState<Number>(0)
+    // const [winnerTwo, setWinnerTwo] = useState<Number>(0)
+    const [competerOne, setCompeterOne] = useState<HamsterInfo[]>()
+    const [hamsterTwoDefeats, setHamsterTwoDefeats] = useState<Number>(0)
+    const [gameHamsterOne, setGameHamsterOne] = useState<Number>(0)
+    const [hamsterTwoGames, setHamsterTwoGames] = useState<Number>(0)
     const [visible, setVisible] = useState<boolean>(false)
-    const [winner, setWinner] = useState<HamsterInfo[]>()
-    const [loser, setLoser]  = useState<HamsterInfo[]>()
+    const [competerTwo, setCompeterTwo]  = useState<HamsterInfo[]>()
     const [errorMsg, setErrorMsg ] = useState<string>('')
+    const [newHamsterOne, setNewHamsterone] = useState<HamsterInfo[]>()
+    const [winner, setWinner] = useState<HamsterInfo[]>()
+    const [loser, setLoser] = useState<HamsterInfo[]>()
     
+
     useEffect(() =>{
         sendRequestOne(setSaveRandomOne)
     }, []) 
@@ -32,23 +37,49 @@ const Tävla = () =>{
     }, []) 
 
     useEffect(() =>{
-        const voting = {wins: winnerOne}
+        console.log(hamsterOne, hamsterOneDefeats, gameHamsterOne)
+        const voting1 = {wins: hamsterOne, defeats: hamsterOneDefeats, games: gameHamsterOne}
         if(saveRandomOne){
             fetch(`/hamsters/${saveRandomOne[id]}`, {
                 method: 'PUT',
                 headers: {
                 'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(voting),
+                body: JSON.stringify(voting1),
             })
           setVisible(!visible)
-          setWinner(saveRandomOne)
+            setCompeterOne(saveRandomOne)
+        //   console.log(saveRandomOne)
         }
+          
         // eslint-disable-next-line
-    }, [winnerOne])
+    }, [hamsterOne, hamsterOneDefeats, gameHamsterOne])
 
     useEffect(() =>{
-        const voting2 = {wins: winnerTwo}
+        if(competerOne){
+            HamsterOne(competerOne)
+            console.log(competerOne)
+        }
+        
+    }, [competerOne])
+
+
+    async function HamsterOne(hamster: any){
+        if(hamster){
+        console.log(hamster.id)
+        const response = await fetch (`/hamsters/${hamster.id}`)
+        if (response.status >= 400 && response.status < 600) {
+            setErrorMsg('Kunde inte hämta slumpad hamster, vänligen försök uppdatera sidan.')
+        }
+        const data = await response.json()
+        console.log(data)
+        setNewHamsterone(data)
+    }
+        }
+
+    
+    useEffect(() =>{
+        const voting2 = {defeats: hamsterTwoDefeats, wins: hamsterTwoWins, games: hamsterTwoGames}
         if(saveRandomTwo){
             fetch(`/hamsters/${saveRandomTwo[id]}`, {
             method: 'PUT',
@@ -58,97 +89,56 @@ const Tävla = () =>{
             body: JSON.stringify(voting2),
         })
         setVisible(!visible)
-        setWinner(saveRandomTwo)
+        setCompeterTwo(saveRandomTwo)
         }
         // eslint-disable-next-line
-    }, [winnerTwo])
+    }, [hamsterTwoDefeats, hamsterTwoWins, hamsterTwoGames])
 
-    useEffect(() =>{
-        const votingLose1 = {defeats: loserOne}
-        if(saveRandomOne){
-            fetch(`/hamsters/${saveRandomOne[id]}`, {
-            method: 'PUT',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(votingLose1),
-            })
-        setVisible(!visible)
-        setLoser(saveRandomOne)
-        }
-        // eslint-disable-next-line
-    }, [loserOne])
-
-    useEffect(() =>{
-        const votingLose2 = {defeats: loserTwo}
-        if(saveRandomTwo){
-            fetch(`/hamsters/${saveRandomTwo[id]}`, {
-            method: 'PUT',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(votingLose2),
-        })
-        setVisible(!visible)
-        setLoser(saveRandomTwo)
-        }
-        // eslint-disable-next-line
-    }, [loserTwo])
-
-    useEffect(() =>{
-        const game1 = {games: gameOne}
-        if(saveRandomOne){
-            fetch(`/hamsters/${saveRandomOne[id]}`, {
-            method: 'PUT',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(game1),
-        })
-        setVisible(!visible)
-        }
-        // eslint-disable-next-line
-    }, [gameOne])
-
-    useEffect(() =>{
-        const game2 = {games: gameTwo}
-        if(saveRandomTwo){
-            fetch(`/hamsters/${saveRandomTwo[id]}`, {
-            method: 'PUT',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(game2),
-        })
-        setVisible(!visible)
-        }
-        // eslint-disable-next-line
-    }, [gameTwo])
 
     async function Vote(HamsterId: HamsterInfo){
         if(saveRandomOne && saveRandomTwo){
             if(HamsterId === saveRandomOne[id]){
-                const updateNumber = Number(saveRandomOne[wins]) + 1
-                setWinnerOne(updateNumber)
-                const updateLoser2 = Number(saveRandomTwo[defeats]) + 1
-                setLoserTwo(updateLoser2)
+                const updateWins1 = Number(saveRandomOne[wins]) + 1
+                setHamsterOne(updateWins1)
+                const updateWinDefeats = Number(saveRandomOne[defeats])
+                setHamsterOneDefeats(updateWinDefeats)
                 const updateGame1 = Number(saveRandomOne[games]) + 1
-                setGameOne(updateGame1)
+                setGameHamsterOne(updateGame1)
+                setWinner(saveRandomOne)
+
+                const updatecompeterTwo2 = Number(saveRandomTwo[defeats]) + 1
+                setHamsterTwoDefeats(updatecompeterTwo2)
+                const updatehamsterTwoWins = Number(saveRandomTwo[wins])
+                setHamsterTwoWins(updatehamsterTwoWins)
                 const updateGame2 = Number(saveRandomTwo[games]) + 1
-                setGameTwo(updateGame2)             
+                setHamsterTwoGames(updateGame2)
+                setLoser(saveRandomTwo)             
             }
             if(HamsterId === saveRandomTwo[id]){
-                const updateNumber2 = Number(saveRandomTwo[wins]) + 1
-                setWinnerTwo(updateNumber2)
-                const updateLoser1 = Number(saveRandomOne[defeats]) + 1
-                setLoserOne(updateLoser1)
-                const updateGame1 = Number(saveRandomOne[games]) + 1
-                setGameOne(updateGame1)
+
+                //winner
+                const updateWins2 = Number(saveRandomTwo[wins]) + 1
+                setHamsterTwoWins(updateWins2)
+                const updateDefeats2 = Number(saveRandomTwo[defeats])
+                setHamsterTwoDefeats(updateDefeats2)
                 const updateGame2 = Number(saveRandomTwo[games]) + 1
-                setGameTwo(updateGame2)
+                setHamsterTwoGames(updateGame2)
+                setWinner(saveRandomTwo)
+                
+                //competerTwo
+                const updateDefeatsOne = Number(saveRandomOne[defeats]) + 1
+                setHamsterOneDefeats(updateDefeatsOne)
+                const updateWins1 = Number(saveRandomOne[wins])
+                setHamsterOne(updateWins1)
+                const updateGame1 = Number(saveRandomOne[games]) + 1
+                setGameHamsterOne(updateGame1)
+                setLoser(saveRandomOne)
+                
             }
         }
     }
+
+    
 
     async function sendRequestOne(saveData: any){
         const response = await fetch ('/hamsters/random')
@@ -174,7 +164,7 @@ const Tävla = () =>{
         setVisible(false)
     }
 
-
+    console.log(saveRandomOne)
     return(
         <section className='compete'>
         <section className='hamsterCompete'>
@@ -207,65 +197,85 @@ const Tävla = () =>{
         </section>
         <section className={'overlay ' + visible}>
             <p className='errorMessages'>{errorMsg}</p>
-            { saveRandomOne && saveRandomTwo && winner && loser ?
+            { saveRandomOne && newHamsterOne && saveRandomTwo && competerOne && competerTwo ?
+            <>
             <ul className='results'>
+                {console.log(newHamsterOne)}
+            {console.log(saveRandomOne)}
                 <li className='results-hamster'>
                     <h1>Vinnare: </h1>
-                    <figure className='results-image'>
-                        {!winner[imgName].toString().includes('.jpg') ? 
-                        <img src={`${winner[imgName]}`} alt="hamster" />
-                        : <img src={`../../img/${winner[imgName]}`} alt="hamster" />}
-                        
-                    </figure>
+                    {winner && loser && winner[id] === saveRandomOne[id] ? 
                     
-                    <article className='winLoseText'>
-                        {winner[id] === saveRandomOne[id] ? 
-                        <section>
-                        <p className='overlay-text'>Namn: {winner[name]}</p> 
-                        <p className='overlay-text'>Vinster: {winnerOne}</p>
-                        <p className='overlay-text'>Förluster: {winner[defeats]}</p>
-                        <p className='overlay-text'>Matcher: {gameOne}</p>
-                    </section> :
+                    <section>{console.log(winner[id])}
+                    {console.log(saveRandomOne[id])}
+                    {console.log(saveRandomTwo[id])}
+                    <figure className='results-image'>
+                        {!saveRandomOne[imgName].toString().includes('.jpg') ? 
+                        <img src={`${saveRandomOne[imgName]}`} alt="hamster" />
+                        : <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />}
+                    </figure>
+                        <article className='winLoseText'>
+                            <p className='overlay-text'>Namn: {saveRandomOne[name]}</p> 
+                            <p className='overlay-text'>Vinster: {hamsterOne}</p>
+                            <p className='overlay-text'>Förluster: {hamsterOneDefeats}</p>
+                            <p className='overlay-text'>Matcher: {gameHamsterOne}</p>
+                    </article> </section>
+                    :
                     
                     <section>
-                        <p className='overlay-text'>Namn: {winner[name]}</p> 
-                        <p className='overlay-text'>Vinster: {winnerTwo}</p>
-                        <p className='overlay-text'>Förluster: {winner[defeats]}</p>
-                        <p className='overlay-text'>Matcher: {gameTwo}</p>
-                    </section>
-                    }</article>  
+                        <figure className='results-image'>
+                            {!saveRandomTwo[imgName].toString().includes('.jpg') ? 
+                            <img src={`${saveRandomTwo[imgName]}`} alt="hamster" />
+                            : <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />}
+                        </figure>
+                        <article className='winLoseText'>
+                        <p className='overlay-text'>Namn: {competerTwo[name]}</p> 
+                        <p className='overlay-text'>Vinster: {hamsterTwoWins}</p>
+                        <p className='overlay-text'>Förluster: {hamsterTwoDefeats}</p>
+                        <p className='overlay-text'>Matcher: {hamsterTwoGames}</p>
+                    </article></section>
+                    }
                 </li>
                 <li className='results-hamster'>
-                <h1>Förlorare</h1>
-                <figure className='results-image'>
-                    {!loser[imgName].toString().includes('.jpg') ? 
-                        <img src={`${loser[imgName]}`} alt="hamster" />
-                        : <img src={`../../img/${loser[imgName]}`} alt="hamster" />}
-                </figure>
-                {winner[id] === saveRandomOne[id] ? 
-                    <article className='winLoseText'>
-                    <p className='overlay-text'>Namn: {loser[name]}</p> 
-                        <p className='overlay-text'>Vinster: {loser[wins]}</p>
-                        <p className='overlay-text'>Förluster: {loserTwo}</p>
-                        <p className='overlay-text'>Matcher: {gameTwo}</p>
+                    
+                    <h1>Förlorare</h1>
+                    {loser && winner && winner[id] === saveRandomOne[id] ?
+                        <>
+                        <figure className='results-image'>
+                            {!saveRandomTwo[imgName].toString().includes('.jpg') ? 
+                            <img src={`${saveRandomTwo[imgName]}`} alt="hamster" />
+                            : <img src={`../../img/${saveRandomTwo[imgName]}`} alt="hamster" />}
+                        </figure>
+                        <article className='winLoseText'>
+                        <p className='overlay-text'>Namn: {saveRandomTwo[name]}</p> 
+                        <p className='overlay-text'>Vinster: {hamsterTwoWins}</p>
+                        <p className='overlay-text'>Förluster: {hamsterTwoDefeats}</p>
+                        <p className='overlay-text'>Matcher: {hamsterTwoGames}</p>
                     </article>
-                    :
+                    </>
+                    : 
+                    <>
+                    <figure className='results-image'>
+                            {!saveRandomOne[imgName].toString().includes('.jpg') ? 
+                            <img src={`${saveRandomOne[imgName]}`} alt="hamster" />
+                            : <img src={`../../img/${saveRandomOne[imgName]}`} alt="hamster" />}
+                        </figure>
                     <article className='winLoseText'>
-                        <p className='overlay-text'>Namn: {loser[name]}</p> 
-                        <p className='overlay-text'>Vinster: {loser[wins]}</p>
-                        <p className='overlay-text'>Förluster: {loserOne}</p>
-                        <p className='overlay-text'>Matcher: {gameOne}</p>
+                        <p className='overlay-text'>Namn: {saveRandomOne[name]}</p> 
+                        <p className='overlay-text'>Vinster: {hamsterOne}</p>
+                        <p className='overlay-text'>Förluster: {hamsterOneDefeats}</p>
+                        <p className='overlay-text'>Matcher: {gameHamsterOne}</p>
                     </article>
-                }
+                    </>}
+
                 </li>
                 <section className='restartBtn'>
                     <button onClick={() => reloadNewGame()}>Starta nytt spel</button>
                 </section>
-            
-            </ul>
+            </ul></>
             : null}
             
-        </section> 
+        </section>
     </section>
 
     )
