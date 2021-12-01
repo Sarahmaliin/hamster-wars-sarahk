@@ -159,10 +159,10 @@ ul{
     min-height: 22em;
 }
 
-.results-hamster > figure {
+/* .results-hamster > figure {
 	min-width: unset;
     height: unset;
-}
+} */
 
 
 .restartBtn{
