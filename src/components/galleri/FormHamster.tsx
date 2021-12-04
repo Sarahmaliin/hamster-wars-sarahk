@@ -6,7 +6,7 @@ const FormHamster = (props: any) =>{
 
   const [ showForm, setShowForm ] = useState<boolean>(false)
     const [hamsterName] = useState('')
-    const [age] = useState(0)
+    const [age, setAge] = useState(0)
     const [hamsterFood] = useState('')
     const [hamsterLove] = useState('')
     const [hamsterImg] = useState('')
@@ -37,7 +37,8 @@ const FormHamster = (props: any) =>{
     const favFoodInput = (document.querySelector('.favFood') as HTMLInputElement)
     const lovesInput = (document.querySelector('.loves') as HTMLInputElement)
     const imgNameInput = (document.querySelector('.imgName') as HTMLInputElement)
-    let regExp = /^[a-zA-Z]*$/;
+    let regExp = /^[a-öA-Ö]*$/;
+    let ValidNmb = /[0-9]/
 
     useEffect(() =>{
         if(allOkey === true){
@@ -45,11 +46,10 @@ const FormHamster = (props: any) =>{
             
         }  
          if(allOkey === false){
-            setFormError('Något gick fel, var god se felmeddelanden nedan')
+            setFormError('Var god se felmeddelanden nedan')
         } 
         // eslint-disable-next-line
     }, [allOkey])
-
 
     async function saveForm () {
         const res = await fetch('/hamsters', {
@@ -73,16 +73,28 @@ const FormHamster = (props: any) =>{
         return hamsterValidateName.length >= 2  && !hamsterValidateName.includes('-') && !hamsterValidateName.includes('.') && regExp.test(hamsterValidateName)
     }
 
+    const validateNaN = () =>{
+        const hamsterValidateAge = ageInput.value.trim()
+        
+        let nmb = Number(hamsterValidateAge)
+        if(isNaN(nmb)){
+            console.log('not a number')
+        } else{
+            return nmb > 0 && nmb > 2 && nmb < 100 && !hamsterValidateAge.includes(',') && !hamsterValidateAge.includes('.') && ValidNmb.test(hamsterValidateAge)
+        }
+    }
+
     const ValidateAge = () =>{
         const hamsterValidateAge = ageInput.value.trim()
-        let nmb = Number(hamsterValidateAge)
-        return nmb > 2 && nmb < 100 && !isNaN(nmb) && !hamsterValidateAge.includes(',') && !hamsterValidateAge.includes('.')            
+        let nmb = parseInt(hamsterValidateAge)
+        return nmb > 2 && nmb < 100 && !hamsterValidateAge.includes(',') && !hamsterValidateAge.includes('.') && ValidNmb.test(hamsterValidateAge)       
     }
 
     const ValidateFood = () =>{
         const hamsterValidateFavFood = favFoodInput.value.trim()
         return hamsterValidateFavFood.length >= 2 && regExp.test(hamsterValidateFavFood)
     }
+
 
     const ValidateLove = () =>{
         const hamsterValidateLove = lovesInput.value.trim()
@@ -98,19 +110,19 @@ const FormHamster = (props: any) =>{
         
         event.preventDefault()
         if(!ValidateName()) {
-            setErrorName('Nedanstående namn-fält är inkorrekt. Se till så att namnet är över 2 bokstäver, inte innehåller specialtecken')
+            setErrorName('Nedanstående namn-fält är inkorrekt. Se till så att namnet inte är tomt, är över 2 bokstäver och inte innehåller specialtecken')
         }
 
-        if(!ValidateAge()) {
+        if(!ValidateAge() && !validateNaN()) {
             setErrorAge('Nedanstående ålder-fält är inkorrekt. Se till så att åldern är över 2, under 100 och inte inkluderar decimaler')
         }
 
         if(!ValidateFood()) {
-            setErrorFood('Nedanstående favoritmat-fält är inkorrekt, se till så att namnet är över 2 bokstäver, inte innehåller specialtecken')
+            setErrorFood('Nedanstående favoritmat-fält är inkorrekt, se till så att namnet är över 2 bokstäver och inte innehåller specialtecken')
         }
 
         if(!ValidateLove()) {
-            setErrorLoves('Nedanstående älskar-fält är inkorrekt, se till så att namnet är över 2 bokstäver, inte innehåller specialtecken')
+            setErrorLoves('Nedanstående älskar-fält är inkorrekt, se till så att namnet är över 2 bokstäver och inte innehåller specialtecken')
         }
 
         if(!ValidateImg()) {
@@ -118,7 +130,9 @@ const FormHamster = (props: any) =>{
             
         }
 
-        setAllOkey(ValidateName() && ValidateAge() && ValidateFood() && ValidateLove() && ValidateImg())
+
+
+        setAllOkey(ValidateName() && validateNaN() && ValidateAge() && ValidateFood() && ValidateLove() && ValidateImg())
     }
 
     const reloadAfterSubmit = () =>{
@@ -141,15 +155,15 @@ const FormHamster = (props: any) =>{
                     <h1 className='headline'>Lägg till en ny hamster</h1>
                     <h3 className='errorMessages'>{formError}</h3>
                     <h3 className='errorMessages'>{errorName}</h3>
-                    <input className='name' onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' required />
+                    <input className='name' onChange={handleChange} name='name' value={newHamster.name} type="text" placeholder='Namn' />
                     <h3 className='errorMessages'>{errorAge}</h3>
-                    <input className='age' onChange={handleChange} name='age' placeholder='Ålder' value={Number(newHamster.age)} type="string" required  />
+                    <input className='age' onChange={handleChange} name='age' placeholder='Ålder' value={newHamster.age} type="string"  />
                     <h3 className='errorMessages'>{errorFood}</h3>
-                    <input className='favFood' onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='Favoritmat' required />
+                    <input className='favFood' onChange={handleChange} name='favFood' value={newHamster.favFood} type="text" placeholder='Favoritmat' />
                     <h3 className='errorMessages'>{errorLoves}</h3>
-                    <input className='loves' onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' required />
+                    <input className='loves' onChange={handleChange} name='loves' value={newHamster.loves} type="text" placeholder='Älskar' />
                     <h3 className='errorMessages'>{errorImg}</h3>
-                    <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildurl' required />
+                    <input className='imgName' onChange={handleChange} name='imgName' value={newHamster.imgName} type="text" placeholder='Bildurl' />
                     
                 <button  type="submit">Lägg till</button>
                 </section>
